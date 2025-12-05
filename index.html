@@ -23,11 +23,13 @@
         <!-- LEFT SIDEBAR -->
         <td class="sidebar left" valign="top">
           <h1 class="site-title">✿ cutie realm ✿</h1>
+
           <img
             src="https://i.imgur.com/6J58IeY.png"
             alt="avatar"
             class="avatar"
           />
+
           <div class="nav">
             <a href="index.html" class="nav-link">home</a>
             <a href="about.html" class="nav-link">about</a>
@@ -68,6 +70,44 @@
               </button>
             </div>
           </div>
+
+          <!-- PLAYER MOVED HERE (under small tools) -->
+          <div id="player" class="player">
+            <div class="player-title">Winamp XP Skin ♫</div>
+            <div class="player-controls">
+              <button id="prevBtn" class="pbtn">⏮</button>
+              <button id="playBtn" class="pbtn">▶</button>
+              <button id="pauseBtn" class="pbtn">⏸</button>
+              <button id="stopBtn" class="pbtn">■</button>
+              <button id="nextBtn" class="pbtn">⏭</button>
+              <div class="p-info"><span id="trackTitle">No track</span></div>
+            </div>
+
+            <div class="player-controls-2">
+              <input
+                id="seek"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                class="seek"
+              />
+              <input
+                id="volume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+                class="vol"
+              />
+            </div>
+
+            <div class="player-playlist" id="playlist">
+              <!-- playlist items filled by JS -->
+            </div>
+          </div>
+          <!-- end player -->
         </td>
 
         <!-- MAIN CONTENT -->
@@ -113,7 +153,7 @@
 
           <hr class="cute-hr" />
 
-          <!-- STICKER PANEL (BOTTOM & RIGHT will also mirror) -->
+          <!-- STICKER PANEL -->
           <section class="panel">
             <h3>stickers & stamps</h3>
             <p>
@@ -122,7 +162,6 @@
             </p>
 
             <div class="thumb-row" id="stickerThumbs">
-              <!-- thumbnails with external URLs (you can paste your own) -->
               <img
                 class="thumb"
                 data-src="https://i.imgur.com/c3ji33l.gif"
@@ -164,7 +203,7 @@
 
           <hr class="cute-hr" />
 
-          <!-- DECORATION PANELS: Right / Bottom / Floating toolbox (they contain same controls + stamp lists) -->
+          <!-- RIGHT PANEL (now static inside main content, not floating) -->
           <div class="right-panel" id="rightPanel">
             <h4>Right Panel: decorations</h4>
             <div class="thumb-row" id="rightThumbs"></div>
@@ -179,40 +218,6 @@
             </div>
           </div>
 
-          <div class="bottom-panel" id="bottomPanel">
-            <h4>Bottom Panel: stamps</h4>
-            <div class="thumb-row" id="bottomThumbs"></div>
-          </div>
-
-          <!-- floating toolbox (draggable) -->
-          <div
-            id="toolbox"
-            class="toolbox"
-            role="dialog"
-            aria-label="Retro toolbox"
-          >
-            <div class="toolbox-header">
-              Retro Toolbox <span id="closeToolbox" class="close-x">✕</span>
-            </div>
-            <div class="toolbox-body">
-              <div class="thumb-row" id="toolThumbs"></div>
-              <div style="margin-top: 8px">
-                <button class="button small" data-action="toggleFalling">
-                  falling
-                </button>
-                <button class="button small" data-action="toggleMarquee">
-                  marquee
-                </button>
-                <button class="button small" data-action="togglePixel">
-                  pixel
-                </button>
-                <button class="button small" data-action="toggleBorders">
-                  borders
-                </button>
-              </div>
-            </div>
-          </div>
-
           <!-- sticker layer (absolute on top of content) -->
           <div
             id="stickerLayer"
@@ -222,39 +227,6 @@
 
           <hr class="cute-hr" />
 
-          <!-- XP / Winamp-style player (skin B) -->
-          <div id="player" class="player">
-            <div class="player-title">Winamp XP Skin ♫</div>
-            <div class="player-controls">
-              <button id="prevBtn" class="pbtn">⏮</button>
-              <button id="playBtn" class="pbtn">▶</button>
-              <button id="pauseBtn" class="pbtn">⏸</button>
-              <button id="stopBtn" class="pbtn">■</button>
-              <button id="nextBtn" class="pbtn">⏭</button>
-              <div class="p-info"><span id="trackTitle">No track</span></div>
-              <input
-                id="seek"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                class="seek"
-              />
-              <input
-                id="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.8"
-                class="vol"
-              />
-            </div>
-            <div class="player-playlist" id="playlist">
-              <!-- sample playlist lines will be added by JS -->
-            </div>
-          </div>
-
           <footer class="foot">
             © cutie realm 2005 — made in the year of glitter
           </footer>
@@ -263,6 +235,7 @@
         <!-- RIGHT SIDEBAR -->
         <td class="sidebar right" valign="top">
           <h4>right widgets</h4>
+
           <div class="sidebar-section">
             <h5>stamps</h5>
             <div id="rightStampThumbs" class="thumb-row"></div>

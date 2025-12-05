@@ -1,4 +1,4 @@
-/* ---------- Y2K Retro Full CSS ---------- */
+/* ---------- Y2K Retro Full CSS (updated: toolbox removed, bottom strip removed, player moved) ---------- */
 :root {
   --pink: #ff66aa;
   --accent: #ff99cc;
@@ -93,6 +93,55 @@ body {
 }
 .tool-btn:hover {
   border-style: inset;
+}
+
+/* player (now in sidebar) */
+.player {
+  margin-top: 12px;
+  width: 100%;
+  background: linear-gradient(180deg, #e6f3ff, #dceeff);
+  border: 2px outset #b7d6ff;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+}
+.player-title {
+  font-weight: 700;
+  color: #074f8b;
+  margin-bottom: 6px;
+}
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pbtn {
+  background: #bfe1ff;
+  border: 2px outset #9fc9ff;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.p-info {
+  flex: 1;
+  font-size: 13px;
+  color: #0b4e82;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 6px;
+}
+.player-controls-2 {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.seek {
+  flex: 1;
+}
+.vol {
+  width: 80px;
 }
 
 /* content area */
@@ -198,38 +247,9 @@ body {
   float: right;
 }
 
-/* toolbox (floating) */
-.toolbox {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 220px;
-  background: #fff7fb;
-  border: 3px double #ff99cc;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  z-index: 5; /* LOWER so it never floats above content */
-  border-radius: 6px;
-  padding: 8px;
-}
-.toolbox-header {
-  background: #ffd6ec;
-  padding: 6px 8px;
-  font-weight: 700;
-  color: #b3005c;
-  border-bottom: 2px dashed #ffb6df;
-}
-
-.toolbox-body {
-  padding: 8px;
-}
-.close-x {
-  float: right;
-  cursor: pointer;
-}
-
 /* right panel & bottom panel visuals */
 .right-panel {
-  position: static; /* Keep inside layout */
+  position: static;
   width: 100%;
   margin-top: 10px;
   background: #fff8fb;
@@ -237,75 +257,13 @@ body {
   padding: 8px;
 }
 
-.bottom-panel {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 6px;
-  width: 86%;
-  background: #fff8fb;
-  border: 2px dotted #ffd9ef;
-  padding: 8px;
-  z-index: 44;
-}
+/* removed bottom-panel fixed bar; if you want to re-enable make it static inside main */
 
-/* player (Winamp-like XP B) */
-.player {
-  position: fixed;
-  left: 18px;
-  bottom: 18px;
-  width: 420px;
-  background: linear-gradient(180deg, #e6f3ff, #dceeff);
-  border: 3px outset #b7d6ff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  z-index: 70;
-  border-radius: 6px;
-  padding: 8px;
-}
-.player-title {
-  font-weight: 700;
-  color: #074f8b;
-  margin-bottom: 6px;
-}
-.player-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.pbtn {
-  background: #bfe1ff;
-  border: 2px outset #9fc9ff;
-  padding: 6px 8px;
-  cursor: pointer;
-  font-weight: 700;
-}
-.p-info {
-  flex: 1;
-  font-size: 13px;
-  color: #0b4e82;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-left: 6px;
-}
-.seek {
-  width: 100%;
-}
-.vol {
-  width: 80px;
-}
-
-/* tiny help */
+/* tiny help - now static so it won't float over UI */
 .help {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 68px;
-  background: #fffdfd;
-  border: 2px dashed #ffd9ef;
-  padding: 6px 10px;
-  border-radius: 6px;
-  z-index: 65;
+  display: none;
+  margin-top: 12px;
+  text-align: center;
 }
 
 /* sparkle element */
@@ -365,10 +323,5 @@ body {
   }
   .right-panel {
     display: none;
-  }
-  .bottom-panel {
-    width: 95%;
-    left: 2.5%;
-    transform: none;
   }
 }
