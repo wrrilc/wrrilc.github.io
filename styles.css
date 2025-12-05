@@ -279,18 +279,17 @@ footer {
 }
 
 .comment-box {
-  background: #ffe9f4;
-  border: 2px solid #f7b6d4;
-  padding: 12px;
+  border: 2px dotted #ff9ccd;
+  padding: 8px;
+  background: #fff9fc;
   margin: 10px 0;
-  border-radius: 10px;
 }
 
 .comment-name {
-  font-weight: 600;
-  color: #c25582;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  font-weight: bold;
+  color: #cc0077;
+  font-size: 12px;
+  text-decoration: underline;
 }
 
 .comment-text {
