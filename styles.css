@@ -200,24 +200,25 @@ body {
 
 /* toolbox (floating) */
 .toolbox {
-  position: fixed;
-  right: 18px;
-  bottom: 120px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
   width: 220px;
   background: #fff7fb;
   border: 3px double #ff99cc;
-  box-shadow: 0 8px 20px var(--shadow);
-  z-index: 60;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  z-index: 5; /* LOWER so it never floats above content */
   border-radius: 6px;
+  padding: 8px;
 }
 .toolbox-header {
   background: #ffd6ec;
   padding: 6px 8px;
   font-weight: 700;
   color: #b3005c;
-  cursor: move;
   border-bottom: 2px dashed #ffb6df;
 }
+
 .toolbox-body {
   padding: 8px;
 }
