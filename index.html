@@ -3,34 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Cutie Realm — demo inspired style</title>
+    <title>Cutie Realm — Home</title>
 
-    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-
-    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="site" role="main">
-      <!-- Sidebar -->
-      <aside class="sidebar" aria-label="site navigation and info">
+    <div class="site">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
         <div class="logo">
-          <img src="https://i.imgur.com/6J58IeY.png" alt="site logo" />
+          <img src="https://i.imgur.com/6J58IeY.png" alt="logo" />
           <div>
             <h1>cutie realm</h1>
             <div class="subtitle">home of small things</div>
           </div>
         </div>
 
-        <nav class="nav" aria-label="primary">
-          <a href="#" onclick="navSample('home')">home</a>
-          <a href="#" onclick="navSample('about')">about</a>
-          <a href="#" onclick="navSample('diary')">diary</a>
-          <a href="#" onclick="navSample('blog')">blog</a>
+        <nav class="nav">
+          <a href="index.html">home</a>
+          <a href="about.html">about</a>
+          <a href="diary.html">diary</a>
+          <a href="blog.html">blog</a>
         </nav>
 
         <div class="status">
@@ -42,30 +39,30 @@
         </div>
 
         <div class="images-grid">
-          <img src="https://i.imgur.com/1qkYQ3Y.png" alt="pixel art 1" />
-          <img src="https://i.imgur.com/wx2c8QF.png" alt="pixel art 2" />
-          <img src="https://i.imgur.com/ExdKOOz.png" alt="pixel art 3" />
-          <img src="https://i.imgur.com/6J58IeY.png" alt="pixel art 4" />
+          <img src="https://i.imgur.com/1qkYQ3Y.png" />
+          <img src="https://i.imgur.com/wx2c8QF.png" />
+          <img src="https://i.imgur.com/ExdKOOz.png" />
+          <img src="https://i.imgur.com/6J58IeY.png" />
         </div>
 
         <div class="links">
-          <div class="chip">links + resources</div>
-          <div class="chip">magazine scans</div>
+          <div class="chip">resources</div>
           <div class="chip">stationary</div>
+          <div class="chip">pixels</div>
         </div>
       </aside>
 
-      <!-- Main Content -->
+      <!-- MAIN -->
       <main class="main">
         <section class="hero">
           <div class="avatar">
-            <img src="https://i.imgur.com/6J58IeY.png" alt="avatar" />
+            <img src="https://i.imgur.com/6J58IeY.png" />
           </div>
           <div class="hero-text">
             <h2>welcome 2 my site!</h2>
             <p>
-              this is my cutie pie realm — a small corner for pixel bunnies,
-              poetry, and soft things ☆
+              this is my cutie pie realm — a soft place for tiny things & bunny
+              dreams ☆
             </p>
           </div>
         </section>
@@ -74,31 +71,28 @@
           <h3 class="jp-heading">よろしくね〜</h3>
 
           <p>
-            hi!! i just started this website recently :3 so it's currently under
-            construction!!! pls be patient while i keep working on it :D
+            i just started this website recently :3 so things are still under
+            construction hehe !!
           </p>
 
           <div class="repeat-box">
-            i love bunnies i love bunnies i love bunnies i love bunnies i love
-            bunnies i love bunnies
+            i love bunnies i love bunnies i love bunnies i love bunnies
           </div>
 
           <div class="updates">
             <div class="update">
-              <strong>updates</strong><br />2025-09-03: updated about + diary
-              entries.
+              <strong>updates</strong><br />2025-09-03: new diary entry + secret
+              page additions ♡
             </div>
-            <div class="update">2024-02-18: added new blog post + changes!</div>
+            <div class="update">
+              2024-02-18: new blog post & small layout tweaks
+            </div>
           </div>
 
-          <!-- COMMENT SECTION -->
+          <!-- COMMENTS -->
           <section class="comment-wrap">
             <h4>say hi!</h4>
-            <textarea
-              id="commentInput"
-              placeholder="leave a little note..."
-            ></textarea>
-
+            <textarea id="commentInput"></textarea>
             <div class="controls">
               <button class="btn" id="postBtn">post</button>
               <button class="btn secondary" id="clearBtn">clear all</button>
@@ -116,7 +110,6 @@
       </main>
     </div>
 
-    <!-- External JS -->
     <script src="script.js"></script>
   </body>
 </html>
