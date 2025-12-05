@@ -229,15 +229,14 @@ body {
 
 /* right panel & bottom panel visuals */
 .right-panel {
-  position: fixed;
-  right: 18px;
-  top: 120px;
-  width: 180px;
+  position: static; /* Keep inside layout */
+  width: 100%;
+  margin-top: 10px;
   background: #fff8fb;
   border: 2px dotted #ffd9ef;
   padding: 8px;
-  z-index: 45;
 }
+
 .bottom-panel {
   position: fixed;
   left: 50%;

@@ -240,38 +240,6 @@ function makeDraggable(node) {
   node.addEventListener("dblclick", () => node.remove());
 }
 
-/* --------- Toolbox draggable window (option 4) --------- */
-(function toolboxDrag() {
-  const tb = byId("toolbox");
-  if (!tb) return;
-  const hdr = tb.querySelector(".toolbox-header");
-  let dragging = false,
-    sx = 0,
-    sy = 0,
-    ox = 0,
-    oy = 0;
-  hdr.addEventListener("mousedown", (e) => {
-    dragging = true;
-    ox = e.clientX - tb.offsetLeft;
-    oy = e.clientY - tb.offsetTop;
-    tb.style.transition = "none";
-  });
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    tb.style.left = e.clientX - ox + "px";
-    tb.style.top = e.clientY - oy + "px";
-  });
-  document.addEventListener("mouseup", () => {
-    dragging = false;
-    tb.style.transition = "";
-  });
-  // close toolbox
-  byId("closeToolbox").addEventListener(
-    "click",
-    () => (tb.style.display = "none")
-  );
-})();
-
 /* --------- Sparkles initial visibility --------- */
 sparkleLayer.style.display = sparklesOn ? "block" : "none";
 fallingLayer.style.display = fallingOn ? "block" : "none";
