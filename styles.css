@@ -33,7 +33,7 @@ body {
   box-shadow: 0 8px 20px var(--shadow);
 }
 .sidebar {
-  width: 220px;
+  width: 160px;
   padding: 10px;
   vertical-align: top;
   background: linear-gradient(180deg, #fff7fb, #fff0f5);
