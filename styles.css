@@ -166,11 +166,13 @@ body {
   color: var(--accent);
 }
 
+h1,
+h2,
 .jp-heading {
-  font-family: "Press Start 2P";
-  color: var(--accent);
-  font-size: 12px;
-  margin: 0 0 10px 0;
+  font-family: "Comic Sans MS", "MS Gothic", Verdana;
+  font-size: 20px;
+  color: #ff66aa;
+  text-shadow: 1px 1px 0 #fff;
 }
 
 .repeat-box {
