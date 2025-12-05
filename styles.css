@@ -72,20 +72,19 @@ body {
 }
 
 .nav a {
+  display: block;
+  margin: 5px 0;
+  padding: 6px 10px;
+  background: #ffe6f2;
+  border: 2px outset #ffb6d9;
+  color: #d91682;
+  font-size: 11px;
   text-decoration: none;
-  padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  color: var(--muted);
-  font-weight: 600;
-  font-size: 13px;
-  transition: 0.2s;
 }
 
 .nav a:hover {
-  transform: translateY(-2px);
-  color: #2b1b2b;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  background: #ffd4eb;
+  border-style: inset;
 }
 
 .status {
