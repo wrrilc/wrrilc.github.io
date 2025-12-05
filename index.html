@@ -2,25 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Cutie Realm — Y2K</title>
+    <title>Cutie Realm — Y2K Full Retro</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- retro marquee -->
-    <marquee class="retro-marquee" behavior="scroll" direction="left"
-      >♡ welcome to my cute 2000's teen web ✿ guestbook • stickers • blinkies •
-      music ♡</marquee
+    <!-- MARQUEE (toggleable) -->
+    <marquee
+      id="retroMarquee"
+      class="retro-marquee"
+      behavior="scroll"
+      direction="left"
     >
+      ♡ welcome to my Y2K scrapbook — stickers, blinkies, guestbook, and music ♡
+    </marquee>
 
-    <!-- overall layout table (classic) -->
+    <!-- MAIN TABLE LAYOUT (classic) -->
     <table class="layout" cellspacing="0" cellpadding="0" role="presentation">
       <tr>
-        <td class="sidebar" valign="top">
+        <!-- LEFT SIDEBAR -->
+        <td class="sidebar left" valign="top">
           <h1 class="site-title">✿ cutie realm ✿</h1>
-
-          <img src="images/avatar.png" alt="avatar" class="avatar" />
-
+          <img
+            src="https://i.imgur.com/6J58IeY.png"
+            alt="avatar"
+            class="avatar"
+          />
           <div class="nav">
             <a href="index.html" class="nav-link">home</a>
             <a href="about.html" class="nav-link">about</a>
@@ -35,107 +42,51 @@
           </div>
 
           <div class="sidebar-section">
-            <h4>sticker palette</h4>
-            <div class="stickers-palette">
-              <img
-                src="images/sticker1.png"
-                class="sticker-thumb"
-                data-src="images/sticker1.png"
-                alt="sticker1"
-              />
-              <img
-                src="images/sticker2.png"
-                class="sticker-thumb"
-                data-src="images/sticker2.png"
-                alt="sticker2"
-              />
-              <img
-                src="https://i.imgur.com/c3ji33l.gif"
-                class="sticker-thumb"
-                data-src="https://i.imgur.com/c3ji33l.gif"
-                alt="sparkle"
-              />
-            </div>
-            <small>click a sticker to place it</small>
-          </div>
-
-          <div class="sidebar-section">
-            <h4>blinkies & stamps</h4>
-            <div class="blinkies">
-              <img
-                src="https://i.imgur.com/c3ji33l.gif"
-                class="blink"
-                alt="blinkie"
-              />
-              <img
-                src="https://i.imgur.com/GIfzEak.gif"
-                class="blink"
-                alt="blinkie2"
-              />
-              <img
-                src="https://i.imgur.com/RA2W8Ac.gif"
-                class="blink"
-                alt="tile"
-              />
-            </div>
-          </div>
-
-          <div class="sidebar-section">
-            <h4>music</h4>
-            <!-- audio: browsers block autoplay with sound, so we provide controls and also allow 'play on click' -->
-            <audio
-              id="bgMusic"
-              src="images/music-loop.mp3"
-              preload="none"
-              controls
-            ></audio>
-            <div class="music-note">
-              Tip: click play to enable background music
+            <h4>small tools</h4>
+            <div class="button-grid">
+              <button class="tool-btn" data-action="toggleSparkles">
+                sparkles
+              </button>
+              <button class="tool-btn" data-action="toggleFalling">
+                falling
+              </button>
+              <button class="tool-btn" data-action="toggleCursor">
+                cursor
+              </button>
+              <button class="tool-btn" data-action="toggleMarquee">
+                marquee
+              </button>
+              <button class="tool-btn" data-action="changeBg">bg change</button>
+              <button class="tool-btn" data-action="togglePixel">
+                pixel filter
+              </button>
+              <button class="tool-btn" data-action="toggleBorders">
+                XP borders
+              </button>
+              <button class="tool-btn" data-action="placeBlinkie">
+                place blinkie
+              </button>
             </div>
           </div>
         </td>
 
+        <!-- MAIN CONTENT -->
         <td class="content" valign="top">
-          <!-- floating sparkles container -->
-          <div id="sparkles" aria-hidden="true"></div>
+          <div id="sparkles" class="sparkles-layer" aria-hidden="true"></div>
+          <div id="falling" class="falling-layer" aria-hidden="true"></div>
 
           <h2 class="page-header">welcome 2 my Y2K corner ✿</h2>
 
           <p class="lead">
-            this is my little scrapbook — drag stickers around, leave a note in
-            the guestbook, make glitter headings, and be very 2000s with me ☆
+            scrapbook vibes: drag stickers, drop stamps, place blinkies, and
+            press the XP player ▶
           </p>
 
           <hr class="cute-hr" />
 
-          <!-- glitter text generator -->
-          <section class="panel">
-            <h3>glitter text generator</h3>
-            <input
-              id="glitterInput"
-              class="small-input"
-              placeholder="type heading text..."
-            />
-            <select id="glitterStyle">
-              <option value="pink">Pink Sparkle</option>
-              <option value="blue">Blue Neon</option>
-              <option value="gold">Gold Glitter</option>
-            </select>
-            <button id="makeGlitter" class="button">Make glitter text</button>
-            <div
-              id="glitterOutput"
-              class="glitter-output"
-              aria-live="polite"
-            ></div>
-            <small
-              >Click a generated glitter text to insert into the page.</small
-            >
-          </section>
-
-          <!-- guestbook / tagboard -->
+          <!-- GUESTBOOK -->
           <section class="panel">
             <h3>guestbook ♡</h3>
-
             <div class="guest-inputs">
               <input
                 id="nameInput"
@@ -145,10 +96,9 @@
               <input
                 id="emailInput"
                 class="small-input"
-                placeholder="e-mail (optional, hidden)"
+                placeholder="email (optional)"
               />
             </div>
-
             <textarea
               id="msgInput"
               class="big-input"
@@ -157,72 +107,181 @@
             <div class="btn-row">
               <button id="postBtn" class="button">post</button>
               <button id="clearBtn" class="button small">clear all</button>
-              <button id="exportBtn" class="button small">export</button>
             </div>
-
             <div id="messages" class="messages" aria-live="polite"></div>
           </section>
 
           <hr class="cute-hr" />
 
-          <!-- tagboard-like mini chat (live local) -->
+          <!-- STICKER PANEL (BOTTOM & RIGHT will also mirror) -->
           <section class="panel">
-            <h3>tagboard (local)</h3>
-            <div class="tagboard">
-              <div id="tagboardArea" class="tagboard-area"></div>
-              <div class="tagboard-controls">
-                <input id="tagName" class="small-input" placeholder="name" />
-                <input
-                  id="tagMsg"
-                  class="small-input"
-                  placeholder="short msg"
-                />
-                <button id="tagPost" class="button">send</button>
+            <h3>stickers & stamps</h3>
+            <p>
+              click a thumbnail to place it on the page. drag to move.
+              double-click to remove.
+            </p>
+
+            <div class="thumb-row" id="stickerThumbs">
+              <!-- thumbnails with external URLs (you can paste your own) -->
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/c3ji33l.gif"
+                src="https://i.imgur.com/c3ji33l.gif"
+                alt="sparkle"
+              />
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/GIfzEak.gif"
+                src="https://i.imgur.com/GIfzEak.gif"
+                alt="blinkie"
+              />
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/RA2W8Ac.gif"
+                src="https://i.imgur.com/RA2W8Ac.gif"
+                alt="tile"
+              />
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/ExdKOOz.png"
+                src="https://i.imgur.com/ExdKOOz.png"
+                alt="stamp1"
+              />
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/1qkYQ3Y.png"
+                src="https://i.imgur.com/1qkYQ3Y.png"
+                alt="stamp2"
+              />
+              <img
+                class="thumb"
+                data-src="https://i.imgur.com/wx2c8QF.png"
+                src="https://i.imgur.com/wx2c8QF.png"
+                alt="stamp3"
+              />
+            </div>
+          </section>
+
+          <hr class="cute-hr" />
+
+          <!-- DECORATION PANELS: Right / Bottom / Floating toolbox (they contain same controls + stamp lists) -->
+          <div class="right-panel" id="rightPanel">
+            <h4>Right Panel: decorations</h4>
+            <div class="thumb-row" id="rightThumbs"></div>
+            <div class="panel-actions">
+              <button class="button small" data-action="toggleSparkles">
+                sparkles
+              </button>
+              <button class="button small" data-action="toggleCursor">
+                cursor
+              </button>
+              <button class="button small" data-action="changeBg">bg</button>
+            </div>
+          </div>
+
+          <div class="bottom-panel" id="bottomPanel">
+            <h4>Bottom Panel: stamps</h4>
+            <div class="thumb-row" id="bottomThumbs"></div>
+          </div>
+
+          <!-- floating toolbox (draggable) -->
+          <div
+            id="toolbox"
+            class="toolbox"
+            role="dialog"
+            aria-label="Retro toolbox"
+          >
+            <div class="toolbox-header">
+              Retro Toolbox <span id="closeToolbox" class="close-x">✕</span>
+            </div>
+            <div class="toolbox-body">
+              <div class="thumb-row" id="toolThumbs"></div>
+              <div style="margin-top: 8px">
+                <button class="button small" data-action="toggleFalling">
+                  falling
+                </button>
+                <button class="button small" data-action="toggleMarquee">
+                  marquee
+                </button>
+                <button class="button small" data-action="togglePixel">
+                  pixel
+                </button>
+                <button class="button small" data-action="toggleBorders">
+                  borders
+                </button>
               </div>
             </div>
-            <small
-              >Entries are stored locally in your browser (like an old
-              tagboard).</small
-            >
-          </section>
+          </div>
 
-          <hr class="cute-hr" />
-
-          <section class="panel">
-            <h3>retro decorations</h3>
-            <div class="decor-btns">
-              <button id="toggleSparkles" class="button small">
-                toggle sparkles
-              </button>
-              <button id="changeCursor" class="button small">
-                toggle glitter cursor
-              </button>
-              <button id="placeBlinkie" class="button small">
-                place blinkie
-              </button>
-              <button id="marqueeToggle" class="button small">
-                toggle marquee
-              </button>
-            </div>
-          </section>
-
-          <hr class="cute-hr" />
-
-          <!-- sticker layer (absolute over content) -->
+          <!-- sticker layer (absolute on top of content) -->
           <div
             id="stickerLayer"
             class="sticker-layer"
             aria-hidden="false"
           ></div>
 
+          <hr class="cute-hr" />
+
+          <!-- XP / Winamp-style player (skin B) -->
+          <div id="player" class="player">
+            <div class="player-title">Winamp XP Skin ♫</div>
+            <div class="player-controls">
+              <button id="prevBtn" class="pbtn">⏮</button>
+              <button id="playBtn" class="pbtn">▶</button>
+              <button id="pauseBtn" class="pbtn">⏸</button>
+              <button id="stopBtn" class="pbtn">■</button>
+              <button id="nextBtn" class="pbtn">⏭</button>
+              <div class="p-info"><span id="trackTitle">No track</span></div>
+              <input
+                id="seek"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                class="seek"
+              />
+              <input
+                id="volume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+                class="vol"
+              />
+            </div>
+            <div class="player-playlist" id="playlist">
+              <!-- sample playlist lines will be added by JS -->
+            </div>
+          </div>
+
           <footer class="foot">
             © cutie realm 2005 — made in the year of glitter
           </footer>
         </td>
+
+        <!-- RIGHT SIDEBAR -->
+        <td class="sidebar right" valign="top">
+          <h4>right widgets</h4>
+          <div class="sidebar-section">
+            <h5>stamps</h5>
+            <div id="rightStampThumbs" class="thumb-row"></div>
+          </div>
+
+          <div class="sidebar-section">
+            <h5>more GIFs</h5>
+            <div id="rightGifThumbs" class="thumb-row"></div>
+          </div>
+        </td>
       </tr>
     </table>
 
-    <!-- retro cursor image fallback loaded as a resource -->
+    <!-- small help overlay -->
+    <div class="help" id="help">
+      Drag stickers to move. Double-click any sticker to remove it. Click the
+      player ▶ to play.
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

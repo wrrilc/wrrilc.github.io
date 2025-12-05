@@ -1,98 +1,204 @@
-// ---------- Utilities ----------
-const rand = (min, max) => Math.random() * (max - min) + min;
-const el = (id) => document.getElementById(id);
+/* ========== Full retro JS: decorations + player ========== */
 
-// ---------- Sparkles (floating) ----------
+/* --------- Helpers --------- */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+const rand = (a, b) => Math.random() * (b - a) + a;
+const byId = (id) => document.getElementById(id);
+
+/* --------- State --------- */
 let sparklesOn = true;
-function spawnSparkles(count = 8) {
-  const container = el("sparkles");
-  container.innerHTML = "";
+let fallingOn = false;
+let cursorOn = true;
+let marqueeOn = true;
+let pixelOn = false;
+let bordersOn = false;
+
+/* --------- Elements --------- */
+const stickerLayer = byId("stickerLayer");
+const sparkleLayer = byId("sparkles");
+const fallingLayer = byId("falling");
+const marqueeEl = byId("retroMarquee");
+const playlistEl = byId("playlist");
+const messagesEl = byId("messages");
+
+/* --------- EXTERNAL ASSET LIST (editable) --------- */
+const STICKERS = [
+  "https://i.imgur.com/c3ji33l.gif",
+  "https://i.imgur.com/GIfzEak.gif",
+  "https://i.imgur.com/RA2W8Ac.gif",
+  "https://i.imgur.com/ExdKOOz.png",
+  "https://i.imgur.com/1qkYQ3Y.png",
+  "https://i.imgur.com/wx2c8QF.png",
+];
+const BACKGROUNDS = [
+  "https://i.imgur.com/RA2W8Ac.gif", // hearts tile
+  "https://i.imgur.com/0f2Kk1l.png", // pastel dots (example)
+  "https://i.imgur.com/7y5rG9X.gif", // generic pattern
+];
+
+/* --------- Cursor (external tiny image) --------- */
+const cursorURL = "https://i.imgur.com/7r7qv3b.png"; // tiny heart (external) - change if you want
+
+function enableCursor(flag) {
+  document.body.style.cursor = flag ? `url(${cursorURL}) 8 8, auto` : "";
+  cursorOn = !!flag;
+}
+
+/* --------- Sparkles (floating) --------- */
+function spawnSparkles(count = 10) {
+  sparkleLayer.innerHTML = "";
   for (let i = 0; i < count; i++) {
     const s = document.createElement("div");
     s.className = "sparkle";
-    // random start position within content area
-    const left = rand(5, 85);
-    s.style.left = left + "%";
-    s.style.top = rand(-10, 10) + "vh";
-    s.style.animationDelay = rand(0, 5).toFixed(2) + "s";
+    s.style.left = rand(0, 90) + "%";
+    s.style.top = rand(-20, 10) + "vh";
+    s.style.animationDelay = rand(0, 4) + "s";
     s.style.transform = `scale(${rand(0.7, 1.2)})`;
-    container.appendChild(s);
+    sparkleLayer.appendChild(s);
   }
 }
-spawnSparkles(10);
+spawnSparkles(12);
 
-// toggle sparkles
-el("toggleSparkles").addEventListener("click", () => {
-  const container = el("sparkles");
-  sparklesOn = !sparklesOn;
-  container.style.display = sparklesOn ? "block" : "none";
-});
-
-// ---------- Cursor toggle ----------
-let cursorOn = true;
-const cursorImage = "images/heart_cursor.png"; // include in /images
-function enableCursor(flag) {
-  if (flag) {
-    document.body.style.cursor = `url("${cursorImage}") 8 8, auto`;
-  } else {
-    document.body.style.cursor = "";
+/* --------- Falling sparkles --------- */
+let fallingInterval = null;
+function spawnFalling(count = 12) {
+  fallingLayer.innerHTML = "";
+  for (let i = 0; i < count; i++) {
+    const f = document.createElement("div");
+    f.className = "fall";
+    f.style.left = rand(0, 95) + "%";
+    f.style.top = rand(-40, -5) + "vh";
+    f.style.animationDuration = rand(4, 10) + "s";
+    fallingLayer.appendChild(f);
   }
 }
-el("changeCursor").addEventListener("click", () => {
-  cursorOn = !cursorOn;
-  enableCursor(cursorOn);
-});
-// set initial cursor (on)
-enableCursor(true);
 
-// ---------- Place blinkie on content (retro) ----------
-el("placeBlinkie").addEventListener("click", () => {
-  placeSticker("https://i.imgur.com/c3ji33l.gif", 120, 120);
+/* --------- Toggle functions mapped to buttons --------- */
+const ACTIONS = {
+  toggleSparkles() {
+    sparklesOn = !sparklesOn;
+    sparkleLayer.style.display = sparklesOn ? "block" : "none";
+    if (sparklesOn) spawnSparkles(12);
+  },
+  toggleFalling() {
+    fallingOn = !fallingOn;
+    fallingLayer.style.display = fallingOn ? "block" : "none";
+    if (fallingOn) spawnFalling(16);
+  },
+  toggleCursor() {
+    enableCursor(!cursorOn);
+  },
+  toggleMarquee() {
+    marqueeOn = !marqueeOn;
+    marqueeEl.style.display = marqueeOn ? "block" : "none";
+  },
+  changeBg() {
+    // cycle backgrounds
+    const current = document.body.style.background || "";
+    const next =
+      BACKGROUNDS[
+        (BACKGROUNDS.indexOf(current.match(/https?:\/\/\S+\.gif/)?.[0]) + 1) %
+          BACKGROUNDS.length
+      ] || BACKGROUNDS[0];
+    document.body.style.background = `url("${next}") repeat`;
+  },
+  togglePixel() {
+    pixelOn = !pixelOn;
+    document.querySelector(".content").classList.toggle("pixelated", pixelOn);
+  },
+  toggleBorders() {
+    bordersOn = !bordersOn;
+    document.querySelector(".layout").style.borderStyle = bordersOn
+      ? "solid"
+      : "double";
+  },
+  placeBlinkie() {
+    placeSticker("https://i.imgur.com/c3ji33l.gif", 120, 120);
+  },
+};
+
+/* wire sidebar / panel / toolbox buttons (delegation) */
+document.addEventListener("click", (e) => {
+  const action = e.target.dataset && e.target.dataset.action;
+  if (action && ACTIONS[action]) ACTIONS[action]();
 });
 
-// ---------- Stickers palette: click to place a draggable sticker ----------
-document.querySelectorAll(".sticker-thumb").forEach((img) => {
-  img.addEventListener("click", () => {
-    const src = img.getAttribute("data-src") || img.src;
-    placeSticker(src, 96, 96);
+/* --------- Thumb click: place stickers from thumb rows --------- */
+function attachThumbs() {
+  $$(
+    "#stickerThumbs .thumb, #rightThumbs .thumb, #bottomThumbs .thumb, #toolThumbs .thumb"
+  ).forEach((img) => {
+    img.addEventListener("click", () => placeStickerFromThumb(img));
   });
-});
+}
+function placeStickerFromThumb(img) {
+  const src = img.dataset.src || img.src;
+  placeSticker(src, 96, 96);
+}
 
+/* create thumbnails from STICKERS for the panels */
+function populateThumbs() {
+  const lists = [
+    "stickerThumbs",
+    "rightThumbs",
+    "bottomThumbs",
+    "toolThumbs",
+    "rightStampThumbs",
+    "rightGifThumbs",
+  ];
+  lists.forEach((id) => {
+    const node = byId(id);
+    if (!node) return;
+    node.innerHTML = "";
+    STICKERS.forEach((s) => {
+      const im = document.createElement("img");
+      im.className = "thumb";
+      im.src = s;
+      im.dataset.src = s;
+      node.appendChild(im);
+    });
+  });
+  attachThumbs();
+}
+populateThumbs();
+
+/* --------- Place sticker (draggable) --------- */
 function placeSticker(src, w = 96, h = 96) {
-  const layer = el("stickerLayer");
-  layer.style.pointerEvents = "auto";
+  stickerLayer.style.pointerEvents = "auto";
   const s = document.createElement("img");
   s.src = src;
   s.className = "sticker";
-  s.style.left = rand(200, 500) + "px";
-  s.style.top = rand(50, 200) + "px";
   s.style.width = w + "px";
   s.style.height = h + "px";
-  // make draggable
+  // random start near center
+  s.style.left = window.innerWidth / 2 - 60 + rand(-120, 120) + "px";
+  s.style.top = 200 + rand(-60, 120) + "px";
   makeDraggable(s);
-  layer.appendChild(s);
+  stickerLayer.appendChild(s);
 }
 
-// draggable helper
+/* draggable helper: works for mouse + simple touch */
 function makeDraggable(node) {
   node.draggable = false;
-  let offsetX = 0,
-    offsetY = 0,
-    dragging = false;
+  let dragging = false,
+    ox = 0,
+    oy = 0;
 
-  node.addEventListener("mousedown", (e) => {
+  node.addEventListener("mousedown", (ev) => {
+    ev.preventDefault();
     dragging = true;
     node.style.cursor = "grabbing";
-    offsetX = e.clientX - node.getBoundingClientRect().left;
-    offsetY = e.clientY - node.getBoundingClientRect().top;
-    // bring to front
-    node.style.zIndex = Math.floor(Date.now() / 1000);
+    const rect = node.getBoundingClientRect();
+    ox = ev.clientX - rect.left;
+    oy = ev.clientY - rect.top;
+    node.style.zIndex = Date.now() % 100000;
   });
 
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", (ev) => {
     if (!dragging) return;
-    node.style.left = e.clientX - offsetX + "px";
-    node.style.top = e.clientY - offsetY + "px";
+    node.style.left = ev.clientX - ox + "px";
+    node.style.top = ev.clientY - oy + "px";
   });
 
   document.addEventListener("mouseup", () => {
@@ -102,151 +208,254 @@ function makeDraggable(node) {
     }
   });
 
-  // double-click to remove sticker
+  // touch support
+  node.addEventListener(
+    "touchstart",
+    (ev) => {
+      ev.preventDefault();
+      dragging = true;
+      const t = ev.touches[0];
+      const rect = node.getBoundingClientRect();
+      ox = t.clientX - rect.left;
+      oy = t.clientY - rect.top;
+      node.style.zIndex = Date.now() % 100000;
+    },
+    { passive: false }
+  );
+  document.addEventListener(
+    "touchmove",
+    (ev) => {
+      if (!dragging) return;
+      const t = ev.touches[0];
+      node.style.left = t.clientX - ox + "px";
+      node.style.top = t.clientY - oy + "px";
+    },
+    { passive: false }
+  );
+  document.addEventListener("touchend", () => {
+    dragging = false;
+  });
+
+  // double-click/double-tap to remove
   node.addEventListener("dblclick", () => node.remove());
 }
 
-// ---------- Glitter text generator ----------
-el("makeGlitter").addEventListener("click", () => {
-  const txt = el("glitterInput").value.trim();
-  if (!txt) return alert("type something to glitter!");
-  const style = el("glitterStyle").value;
-  const span = document.createElement("span");
-  span.className = `glitter glitter-${style}`;
-  span.textContent = txt;
-  // add style classes for color / effect
-  if (style === "pink") span.classList.add("glitter-pink");
-  if (style === "blue") span.classList.add("glitter-blue");
-  if (style === "gold") span.classList.add("glitter-gold");
-  // append to output
-  el("glitterOutput").appendChild(span);
-  // clicking the generated span inserts it into the content as an H2
-  span.addEventListener("click", () => {
-    const h = document.createElement("h2");
-    h.className = "page-header";
-    h.textContent = txt;
-    document
-      .querySelector(".content")
-      .insertBefore(h, document.querySelector(".panel"));
+/* --------- Toolbox draggable window (option 4) --------- */
+(function toolboxDrag() {
+  const tb = byId("toolbox");
+  if (!tb) return;
+  const hdr = tb.querySelector(".toolbox-header");
+  let dragging = false,
+    sx = 0,
+    sy = 0,
+    ox = 0,
+    oy = 0;
+  hdr.addEventListener("mousedown", (e) => {
+    dragging = true;
+    ox = e.clientX - tb.offsetLeft;
+    oy = e.clientY - tb.offsetTop;
+    tb.style.transition = "none";
   });
-  el("glitterInput").value = "";
-});
+  document.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    tb.style.left = e.clientX - ox + "px";
+    tb.style.top = e.clientY - oy + "px";
+  });
+  document.addEventListener("mouseup", () => {
+    dragging = false;
+    tb.style.transition = "";
+  });
+  // close toolbox
+  byId("closeToolbox").addEventListener(
+    "click",
+    () => (tb.style.display = "none")
+  );
+})();
 
-// ---------- Guestbook (messages) ----------
+/* --------- Sparkles initial visibility --------- */
+sparkleLayer.style.display = sparklesOn ? "block" : "none";
+fallingLayer.style.display = fallingOn ? "block" : "none";
+
+/* --------- Guestbook: localStorage --------- */
 function renderMessages() {
-  const list = el("messages");
-  list.innerHTML = "";
-  const saved = JSON.parse(localStorage.getItem("guestbook_v2") || "[]");
-  saved
+  messagesEl.innerHTML = "";
+  const arr = JSON.parse(localStorage.getItem("guestbook_v2") || "[]");
+  arr
     .slice()
     .reverse()
-    .forEach((item) => {
-      const m = document.createElement("div");
-      m.className = "message";
-      const when = new Date(item.time);
-      const t = when.toLocaleString();
-      m.innerHTML = `<div><span class="msg-name">${escapeHtml(
-        item.name
-      )}</span> <span class="msg-time">${t}</span></div>
-                   <div class="msg-text">${escapeHtml(item.text)}</div>`;
-      list.appendChild(m);
+    .forEach((it) => {
+      const d = document.createElement("div");
+      d.className = "message";
+      const date = new Date(it.time).toLocaleString();
+      d.innerHTML = `<div><span class="msg-name">${escapeHtml(
+        it.name
+      )}</span> <span class="msg-time">${date}</span></div>
+                   <div class="msg-text">${escapeHtml(it.text)}</div>`;
+      messagesEl.appendChild(d);
     });
 }
 function escapeHtml(s) {
-  return s
+  return (s + "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replaceAll(">", "&gt;");
 }
 
-el("postBtn").addEventListener("click", () => {
-  const name = (el("nameInput").value || "anon").trim();
-  const email = (el("emailInput").value || "").trim();
-  const text = (el("msgInput").value || "").trim();
+byId("postBtn").addEventListener("click", () => {
+  const name = (byId("nameInput").value || "anon").trim();
+  const text = (byId("msgInput").value || "").trim();
   if (!text) return alert("write a message!");
-  const saved = JSON.parse(localStorage.getItem("guestbook_v2") || "[]");
-  saved.push({ name, email, text, time: Date.now() });
-  localStorage.setItem("guestbook_v2", JSON.stringify(saved));
-  el("msgInput").value = "";
+  const arr = JSON.parse(localStorage.getItem("guestbook_v2") || "[]");
+  arr.push({ name, text, time: Date.now() });
+  localStorage.setItem("guestbook_v2", JSON.stringify(arr));
+  byId("msgInput").value = "";
   renderMessages();
 });
-el("clearBtn").addEventListener("click", () => {
+byId("clearBtn").addEventListener("click", () => {
   if (confirm("Clear guestbook?")) {
     localStorage.removeItem("guestbook_v2");
     renderMessages();
   }
 });
-el("exportBtn").addEventListener("click", () => {
-  const saved = localStorage.getItem("guestbook_v2") || "[]";
-  const blob = new Blob([saved], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "guestbook.json";
-  a.click();
-  URL.revokeObjectURL(url);
-});
-
-// initial render
 renderMessages();
 
-// ---------- Tagboard (mini live) ----------
-function renderTagboard() {
-  const area = el("tagboardArea");
-  area.innerHTML = "";
-  const arr = JSON.parse(localStorage.getItem("tagboard_v1") || "[]");
-  arr
-    .slice()
-    .reverse()
-    .forEach((e) => {
-      const d = document.createElement("div");
-      d.innerHTML = `<b style="color:#b3005c">${escapeHtml(
-        e.name
-      )}</b> : ${escapeHtml(e.msg)}`;
-      area.appendChild(d);
+/* --------- Populate right & bottom panes with same sticker thumbs --------- */
+function mirrorThumbs() {
+  const ids = [
+    "rightThumbs",
+    "bottomThumbs",
+    "rightStampThumbs",
+    "rightGifThumbs",
+  ];
+  ids.forEach((id) => {
+    const node = byId(id);
+    if (!node) return;
+    node.innerHTML = "";
+    STICKERS.forEach((s) => {
+      const im = document.createElement("img");
+      im.className = "thumb";
+      im.src = s;
+      im.dataset.src = s;
+      node.appendChild(im);
     });
+  });
+  attachThumbs();
 }
-el("tagPost").addEventListener("click", () => {
-  const name = (el("tagName").value || "anon").trim();
-  const msg = (el("tagMsg").value || "").trim();
-  if (!msg) return alert("type a short message");
-  const arr = JSON.parse(localStorage.getItem("tagboard_v1") || "[]");
-  arr.push({ name, msg, t: Date.now() });
-  localStorage.setItem("tagboard_v1", JSON.stringify(arr));
-  el("tagMsg").value = "";
-  renderTagboard();
-});
-renderTagboard();
+mirrorThumbs();
 
-// ---------- Marquee toggle ----------
-let marqueeOn = true;
-const marquee = document.querySelector(".retro-marquee");
-el("marqueeToggle").addEventListener("click", () => {
-  marqueeOn = !marqueeOn;
-  marquee.style.display = marqueeOn ? "block" : "none";
+/* attach thumbs (again) */
+function attachThumbs() {
+  $$(".thumb").forEach((t) => {
+    if (t._attached) return;
+    t.addEventListener("click", () =>
+      placeSticker(t.dataset.src || t.src, 96, 96)
+    );
+    t._attached = true;
+  });
+}
+
+/* --------- Player (Winamp-like XP-B) --------- */
+const player = {
+  audio: new Audio(),
+  playlist: [
+    {
+      title: "Retro Loop (demo)",
+      src: "https://cdn.pixabay.com/download/audio/2023/03/15/audio_c8a8d3f7a6.mp3?filename=sleepy-loop-ambient-14031.mp3",
+    },
+    {
+      title: "Chill Y2K (demo)",
+      src: "https://cdn.pixabay.com/download/audio/2021/11/17/audio_9d2d8a95ad.mp3?filename=relaxing-ambient-127657.mp3",
+    },
+  ],
+  idx: 0,
+  playing: false,
+};
+function loadTrack(i) {
+  player.idx = (i + player.playlist.length) % player.playlist.length;
+  player.audio.src = player.playlist[player.idx].src;
+  byId("trackTitle").textContent = player.playlist[player.idx].title;
+  highlightPlaylist();
+}
+function highlightPlaylist() {
+  playlistEl.innerHTML = "";
+  player.playlist.forEach((t, i) => {
+    const d = document.createElement("div");
+    d.className = "pl-item";
+    d.textContent = `${i + 1}. ${t.title}`;
+    d.style.cursor = "pointer";
+    d.style.fontSize = "12px";
+    d.style.padding = "4px";
+    if (i === player.idx) d.style.background = "#dbeeff";
+    d.addEventListener("click", () => {
+      loadTrack(i);
+      player.audio.play();
+    });
+    playlistEl.appendChild(d);
+  });
+}
+/* controls */
+byId("playBtn").addEventListener("click", () => {
+  player.audio.play();
+});
+byId("pauseBtn").addEventListener("click", () => {
+  player.audio.pause();
+});
+byId("stopBtn").addEventListener("click", () => {
+  player.audio.pause();
+  player.audio.currentTime = 0;
+});
+byId("prevBtn").addEventListener("click", () => {
+  loadTrack(player.idx - 1);
+  player.audio.play();
+});
+byId("nextBtn").addEventListener("click", () => {
+  loadTrack(player.idx + 1);
+  player.audio.play();
 });
 
-// ---------- Music: try play on first user interaction for autoplay blocked browsers ----------
-const audio = document.getElementById("bgMusic");
-function enableMusicOnInteraction() {
+/* seek & volume */
+byId("seek").addEventListener("input", (e) => {
+  const pct = e.target.value / 100;
+  if (player.audio.duration)
+    player.audio.currentTime = player.audio.duration * pct;
+});
+byId("volume").addEventListener(
+  "input",
+  (e) => (player.audio.volume = e.target.value)
+);
+
+/* update seek slider during playback */
+player.audio.addEventListener("timeupdate", () => {
+  if (player.audio.duration) {
+    byId("seek").value = Math.round(
+      (player.audio.currentTime / player.audio.duration) * 100
+    );
+  }
+});
+
+/* autoplay on first user interaction to satisfy modern browsers */
+function enablePlayOnInteraction() {
   function tryPlay() {
-    if (!audio) return;
-    audio.play().catch(() => {}); // browsers may block; that's OK
+    player.audio.play().catch(() => {});
     document.removeEventListener("click", tryPlay);
   }
   document.addEventListener("click", tryPlay);
 }
-enableMusicOnInteraction();
+enablePlayOnInteraction();
 
-// ---------- small helper: clear sticker layer on double-click content -->
-document.querySelector(".content").addEventListener("dblclick", (e) => {
-  // if user double-clicks empty content, remove any sticker under pointer only
-  // (we allow double-click on sticker to remove; this is a safety net)
-});
+/* load initial track & UI */
+loadTrack(0);
 
-// ---------- On load: set defaults ----------
+/* --------- Marquee button already wired (data-action) above via delegation. */
+
+/* --------- init: enable cursor, show sparkles, attach thumbs, spawn falling if needed --------- */
 enableCursor(true);
 spawnSparkles(12);
-renderMessages();
-renderTagboard();
+attachThumbs();
+
+/* Optional: cleanup on page unload to avoid memory leaks with many intervals (none used heavily) */
+window.addEventListener("unload", () => {
+  /* nothing heavy to cleanup */
+});
+
+/* ---------- end script.js ---------- */

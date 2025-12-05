@@ -1,21 +1,21 @@
-/* --------- 2000s Y2K STYLE --------- */
+/* ---------- Y2K Retro Full CSS ---------- */
 :root {
   --pink: #ff66aa;
-  --soft: #fff0fb;
   --accent: #ff99cc;
+  --xpblue: #2b8be0;
   --shadow: rgba(0, 0, 0, 0.12);
 }
 
-/* classic tiled background */
+/* body tile */
 body {
   margin: 0;
   font-family: "Verdana", "Arial", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #222;
   background: url("https://i.imgur.com/RA2W8Ac.gif") repeat;
 }
 
-/* retro marquee */
+/* marquee */
 .retro-marquee {
   background: linear-gradient(90deg, #fff0fb, #fff4f9);
   padding: 6px 0;
@@ -24,33 +24,33 @@ body {
   border-bottom: 3px double var(--accent);
 }
 
-/* main boxed layout (table) */
+/* table layout boxed */
 .layout {
-  width: 860px;
-  margin: 20px auto;
+  width: 980px;
+  margin: 18px auto;
   border: 4px double #ff99cc;
   background: #fffefc;
   box-shadow: 0 8px 20px var(--shadow);
 }
-
-/* SIDEBAR */
 .sidebar {
   width: 220px;
   padding: 10px;
+  vertical-align: top;
   background: linear-gradient(180deg, #fff7fb, #fff0f5);
   border-right: 3px double var(--accent);
-  vertical-align: top;
 }
-
+.sidebar.right {
+  border-left: 3px double var(--accent);
+  border-right: none;
+}
 .site-title {
-  font-family: "Comic Sans MS", "Verdana";
+  font-family: "Comic Sans MS", Verdana;
   color: var(--pink);
   text-align: center;
-  margin: 6px 0 8px;
   font-size: 20px;
+  margin: 6px 0;
   text-shadow: 1px 1px 0 #fff;
 }
-
 .avatar {
   display: block;
   margin: 8px auto;
@@ -59,10 +59,6 @@ body {
   object-fit: cover;
   border: 3px ridge #ffbcd9;
   background: #fff;
-}
-
-.nav {
-  margin-top: 10px;
 }
 .nav-link {
   display: block;
@@ -80,26 +76,33 @@ body {
   background: #ffcfe6;
 }
 
-/* sidebar sections */
-.sidebar-section {
-  margin-top: 12px;
-  padding-top: 6px;
-  border-top: 1px dashed #ffd9ef;
+/* left tool grid */
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
 }
-.divider {
-  display: block;
-  margin: 8px auto;
-  width: 120px;
+.tool-btn {
+  background: #ffd6ec;
+  border: 2px outset #ff9ccd;
+  padding: 6px;
+  cursor: pointer;
+  color: #b3005c;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.tool-btn:hover {
+  border-style: inset;
 }
 
-/* CONTENT */
+/* content area */
 .content {
   padding: 14px;
   background: linear-gradient(180deg, #ffffff, #fffafc);
-  position: relative; /* stickers absolute inside */
+  position: relative;
   min-height: 520px;
+  overflow: visible;
 }
-
 .page-header {
   font-family: "Comic Sans MS";
   color: var(--pink);
@@ -110,16 +113,6 @@ body {
   color: #5a2a4a;
   margin: 8px 0 12px;
 }
-
-/* panels / boxes */
-.panel {
-  background: #fff7fb;
-  border: 2px dotted #ff9ccd;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-}
-
 .cute-hr {
   border: none;
   height: 8px;
@@ -127,42 +120,60 @@ body {
   margin: 12px 0;
 }
 
-/* inputs & buttons */
-.small-input,
-.big-input,
-.input {
-  display: block;
-  width: 95%;
-  padding: 8px;
-  margin: 6px 0;
-  border: 2px dotted #ffb6df;
-  background: #fff9fc;
-  border-radius: 4px;
-  font-size: 13px;
+/* panels */
+.panel {
+  background: #fff7fb;
+  border: 2px dotted #ff9ccd;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
 }
-.big-input {
-  min-height: 80px;
-  resize: vertical;
+.thumb-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-
-.button {
-  background: #ffd6ec;
-  color: #b3005c;
-  border: 2px outset #ff9ccd;
-  padding: 6px 10px;
+.thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border: 2px solid #ffdfee;
   cursor: pointer;
-  margin-right: 6px;
-  font-weight: 700;
-}
-.button.small {
-  padding: 4px 8px;
-  font-size: 12px;
-}
-.button:hover {
-  border-style: inset;
 }
 
-/* messages / guestbook */
+/* sticker layer absolute */
+.sticker-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+.sticker {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  cursor: grab;
+  pointer-events: auto;
+  user-select: none;
+}
+
+/* sparkles layers */
+.sparkles-layer,
+.falling-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* message / guestbook */
 .messages {
   margin-top: 10px;
   max-height: 220px;
@@ -187,49 +198,134 @@ body {
   float: right;
 }
 
-/* tagboard */
-.tagboard {
-  background: #fff;
-  border: 2px dotted #ffd9ef;
-  padding: 8px;
+/* toolbox (floating) */
+.toolbox {
+  position: fixed;
+  right: 18px;
+  bottom: 120px;
+  width: 220px;
+  background: #fff7fb;
+  border: 3px double #ff99cc;
+  box-shadow: 0 8px 20px var(--shadow);
+  z-index: 60;
   border-radius: 6px;
 }
-.tagboard-area {
-  max-height: 120px;
-  overflow: auto;
-  padding: 6px;
-  background: #fff8fb;
-  margin-bottom: 6px;
+.toolbox-header {
+  background: #ffd6ec;
+  padding: 6px 8px;
+  font-weight: 700;
+  color: #b3005c;
+  cursor: move;
+  border-bottom: 2px dashed #ffb6df;
+}
+.toolbox-body {
+  padding: 8px;
+}
+.close-x {
+  float: right;
+  cursor: pointer;
 }
 
-/* sparkles (floating) */
-#sparkles {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 2;
+/* right panel & bottom panel visuals */
+.right-panel {
+  position: fixed;
+  right: 18px;
+  top: 120px;
+  width: 180px;
+  background: #fff8fb;
+  border: 2px dotted #ffd9ef;
+  padding: 8px;
+  z-index: 45;
 }
+.bottom-panel {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 6px;
+  width: 86%;
+  background: #fff8fb;
+  border: 2px dotted #ffd9ef;
+  padding: 8px;
+  z-index: 44;
+}
+
+/* player (Winamp-like XP B) */
+.player {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  width: 420px;
+  background: linear-gradient(180deg, #e6f3ff, #dceeff);
+  border: 3px outset #b7d6ff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  z-index: 70;
+  border-radius: 6px;
+  padding: 8px;
+}
+.player-title {
+  font-weight: 700;
+  color: #074f8b;
+  margin-bottom: 6px;
+}
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pbtn {
+  background: #bfe1ff;
+  border: 2px outset #9fc9ff;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.p-info {
+  flex: 1;
+  font-size: 13px;
+  color: #0b4e82;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 6px;
+}
+.seek {
+  width: 100%;
+}
+.vol {
+  width: 80px;
+}
+
+/* tiny help */
+.help {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 68px;
+  background: #fffdfd;
+  border: 2px dashed #ffd9ef;
+  padding: 6px 10px;
+  border-radius: 6px;
+  z-index: 65;
+}
+
+/* sparkle element */
 .sparkle {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   background: url("https://i.imgur.com/c3ji33l.gif") center/contain no-repeat;
   opacity: 0.95;
   animation: drift 6s linear infinite;
 }
 @keyframes drift {
   0% {
-    transform: translateY(-20%) scale(0.8);
+    transform: translateY(-10vh) scale(0.8);
     opacity: 0;
   }
   10% {
     opacity: 1;
   }
-  50% {
+  60% {
     transform: translateY(40vh) rotate(20deg) scale(1.1);
   }
   100% {
@@ -238,71 +334,41 @@ body {
   }
 }
 
-/* sticker layer sits above content (but below UI) */
-.sticker-layer {
+/* falling sparkle */
+.fall {
   position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 3;
+  width: 18px;
+  height: 18px;
+  background: url("https://i.imgur.com/GIfzEak.gif") center/contain no-repeat;
+  animation: fallAnim linear infinite;
+}
+@keyframes fallAnim {
+  from {
+    transform: translateY(-20vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
 }
 
-/* draggable sticker */
-.sticker {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  cursor: grab;
-  pointer-events: auto; /* allow dragging */
+/* pixel filter */
+.pixelated {
+  image-rendering: pixelated;
+  filter: contrast(1.02) saturate(1.05);
+  transform-origin: 0 0;
 }
 
-/* glitter output */
-.glitter-output .glitter {
-  display: inline-block;
-  padding: 6px 10px;
-  margin: 6px;
-  background: linear-gradient(90deg, #fff0fb, #fff8ff);
-  border: 2px solid #ffd9ef;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 0 6px 14px rgba(200, 0, 120, 0.08);
-}
-.glitter-pink {
-  color: #d4006b;
-  text-shadow: 0 0 6px rgba(255, 150, 200, 0.7);
-}
-.glitter-blue {
-  color: #0066cc;
-  text-shadow: 0 0 8px rgba(120, 200, 255, 0.6);
-}
-.glitter-gold {
-  color: #b46b08;
-  text-shadow: 0 0 6px rgba(255, 220, 120, 0.6);
-}
-
-/* footer */
-.foot {
-  margin-top: 12px;
-  text-align: right;
-  font-size: 11px;
-  color: #7b5a6b;
-}
-
-/* blinkies */
-.blink {
-  width: 40px;
-  margin: 4px;
-}
-
-/* responsive tiny tweak */
-@media (max-width: 920px) {
+/* responsive touch */
+@media (max-width: 1000px) {
   .layout {
     width: 95%;
   }
-  .avatar {
-    width: 120px;
-    height: 120px;
+  .right-panel {
+    display: none;
+  }
+  .bottom-panel {
+    width: 95%;
+    left: 2.5%;
+    transform: none;
   }
 }
