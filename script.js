@@ -1,59 +1,55 @@
-// Comment + status logic
+// Load saved comments
+function loadComments() {
+  const commentsList = document.getElementById("commentsList");
+  commentsList.innerHTML = "";
 
-const postBtn = document.getElementById("postBtn");
-const clearBtn = document.getElementById("clearBtn");
-const list = document.getElementById("commentsList");
-const input = document.getElementById("commentInput");
-const statusText = document.getElementById("statusText");
-const statusToggle = document.getElementById("statusToggle");
+  const saved = JSON.parse(localStorage.getItem("comments") || "[]");
 
-// Load comments
-let comments = JSON.parse(localStorage.getItem("cute_comments") || "[]");
+  saved.forEach((c) => {
+    const box = document.createElement("div");
+    box.className = "comment-box";
 
-function renderComments() {
-  list.innerHTML = "";
+    box.innerHTML = `
+      <div class="comment-name">${c.name}</div>
+      <div class="comment-text">${c.text}</div>
+    `;
 
-  if (comments.length === 0) {
-    list.innerHTML = `<div style="color:#7b6b7b;font-size:13px">no comments yet — be the first! ♡</div>`;
-    return;
-  }
-
-  comments
-    .slice()
-    .reverse()
-    .forEach((text) => {
-      const div = document.createElement("div");
-      div.className = "comment";
-      div.textContent = text;
-      list.appendChild(div);
-    });
+    commentsList.appendChild(box);
+  });
 }
 
-postBtn.addEventListener("click", () => {
-  const text = input.value.trim();
-  if (!text) return alert("write something cute!");
-  comments.push(text);
-  localStorage.setItem("cute_comments", JSON.stringify(comments));
-  input.value = "";
-  renderComments();
-});
+// Save a new comment
+document.getElementById("postBtn").onclick = () => {
+  const name = document.getElementById("usernameInput").value.trim();
+  const text = document.getElementById("commentInput").value.trim();
 
-clearBtn.addEventListener("click", () => {
-  if (!confirm("Clear all comments?")) return;
-  comments = [];
-  localStorage.removeItem("cute_comments");
-  renderComments();
-});
+  if (!name || !text) return alert("Please enter a name and a message 💗");
 
-statusToggle.addEventListener("click", () => {
-  statusText.style.display =
-    statusText.style.display === "none" ? "inline" : "none";
-});
+  const saved = JSON.parse(localStorage.getItem("comments") || "[]");
 
-// Fake navigation
-window.navSample = function (page) {
-  alert("Navigate to: " + page + " (demo only!)");
+  saved.push({ name, text });
+
+  localStorage.setItem("comments", JSON.stringify(saved));
+
+  document.getElementById("commentInput").value = "";
+  loadComments();
 };
 
-// initial load
-renderComments();
+// Clear all comments
+document.getElementById("clearBtn").onclick = () => {
+  if (confirm("Clear all comments?")) {
+    localStorage.removeItem("comments");
+    loadComments();
+  }
+};
+
+// Status toggle (keeps your original function)
+document.getElementById("statusToggle").onclick = () => {
+  const status = document.getElementById("statusText");
+  status.textContent = status.textContent.includes("melon")
+    ? "status: daydreaming..."
+    : "status: drinking melon soda";
+};
+
+// Load comments on page load
+loadComments();
