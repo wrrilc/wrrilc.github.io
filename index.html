@@ -2,34 +2,121 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A short description of your site" />
-    <title>Wrrilc Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cutie Realm — demo inspired style</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="images/" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Styles (create styles.css or remove this) -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/">Home</a>
-        <!-- add more links as needed -->
-      </nav>
-    </header>
+    <div class="site" role="main">
+      <!-- Sidebar -->
+      <aside class="sidebar" aria-label="site navigation and info">
+        <div class="logo">
+          <img src="https://i.imgur.com/6J58IeY.png" alt="site logo" />
+          <div>
+            <h1>cutie realm</h1>
+            <div class="subtitle">home of small things</div>
+          </div>
+        </div>
 
-    <main>
-      <h1>Welcome</h1>
-      <p>Start editing <code>index.html</code> to build your site.</p>
-    </main>
+        <nav class="nav" aria-label="primary">
+          <a href="#" onclick="navSample('home')">home</a>
+          <a href="#" onclick="navSample('about')">about</a>
+          <a href="#" onclick="navSample('diary')">diary</a>
+          <a href="#" onclick="navSample('blog')">blog</a>
+        </nav>
 
-    <footer>
-      <p>&copy; 2025 Wrrilc</p>
-    </footer>
+        <div class="status">
+          <span class="dot"></span>
+          <div>
+            <div class="mood">mood: sleepy</div>
+            <small id="statusText">status: drinking melon soda</small>
+          </div>
+        </div>
 
-    <!-- Scripts (create scripts.js or remove this) -->
-    <script src="scripts.js" defer></script>
+        <div class="images-grid">
+          <img src="https://i.imgur.com/1qkYQ3Y.png" alt="pixel art 1" />
+          <img src="https://i.imgur.com/wx2c8QF.png" alt="pixel art 2" />
+          <img src="https://i.imgur.com/ExdKOOz.png" alt="pixel art 3" />
+          <img src="https://i.imgur.com/6J58IeY.png" alt="pixel art 4" />
+        </div>
+
+        <div class="links">
+          <div class="chip">links + resources</div>
+          <div class="chip">magazine scans</div>
+          <div class="chip">stationary</div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main">
+        <section class="hero">
+          <div class="avatar">
+            <img src="https://i.imgur.com/6J58IeY.png" alt="avatar" />
+          </div>
+          <div class="hero-text">
+            <h2>welcome 2 my site!</h2>
+            <p>
+              this is my cutie pie realm — a small corner for pixel bunnies,
+              poetry, and soft things ☆
+            </p>
+          </div>
+        </section>
+
+        <article class="content">
+          <h3 class="jp-heading">よろしくね〜</h3>
+
+          <p>
+            hi!! i just started this website recently :3 so it's currently under
+            construction!!! pls be patient while i keep working on it :D
+          </p>
+
+          <div class="repeat-box">
+            i love bunnies i love bunnies i love bunnies i love bunnies i love
+            bunnies i love bunnies
+          </div>
+
+          <div class="updates">
+            <div class="update">
+              <strong>updates</strong><br />2025-09-03: updated about + diary
+              entries.
+            </div>
+            <div class="update">2024-02-18: added new blog post + changes!</div>
+          </div>
+
+          <!-- COMMENT SECTION -->
+          <section class="comment-wrap">
+            <h4>say hi!</h4>
+            <textarea
+              id="commentInput"
+              placeholder="leave a little note..."
+            ></textarea>
+
+            <div class="controls">
+              <button class="btn" id="postBtn">post</button>
+              <button class="btn secondary" id="clearBtn">clear all</button>
+              <div class="spacer"></div>
+              <button class="btn secondary" id="statusToggle">
+                toggle status
+              </button>
+            </div>
+
+            <div class="comment-list" id="commentsList"></div>
+          </section>
+
+          <footer>© cutie realm 2025</footer>
+        </article>
+      </main>
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
   </body>
 </html>
