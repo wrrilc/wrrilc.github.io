@@ -1,3 +1,10 @@
+body {
+  background: url("https://i.imgur.com/RA2W8Ac.gif"); /* cute pixel hearts */
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  color: #333;
+}
+
 /* ---------- Root Tokens ---------- */
 :root {
   --bg-1: #fff6fb;
@@ -21,11 +28,12 @@ body {
 }
 
 .site {
-  width: 100%;
-  max-width: var(--max-width);
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 20px;
+  width: 760px;
+  margin: 30px auto;
+  background: #fff;
+  border: 3px double #ff99cc;
+  padding: 15px;
+  box-shadow: 0 0 15px #ffb3e0;
 }
 
 /* ---------- Sidebar ---------- */
