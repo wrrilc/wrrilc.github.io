@@ -259,3 +259,33 @@ footer {
     height: 84px;
   }
 }
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #f3c0d8;
+  border-radius: 8px;
+  background: #fff4fa;
+  font-family: inherit;
+}
+
+.comment-box {
+  background: #ffe9f4;
+  border: 2px solid #f7b6d4;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.comment-name {
+  font-weight: 600;
+  color: #c25582;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.comment-text {
+  white-space: pre-wrap;
+  color: #444;
+  font-size: 0.95rem;
+}
