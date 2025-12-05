@@ -1,299 +1,132 @@
+/* ✿ 2000's TILE BACKGROUND ✿ */
 body {
-  background: url("https://i.imgur.com/RA2W8Ac.gif"); /* cute pixel hearts */
+  background: url("https://i.imgur.com/RA2W8Ac.gif");
   font-family: Verdana, Arial, sans-serif;
   font-size: 12px;
   color: #333;
-}
-
-/* ---------- Root Tokens ---------- */
-:root {
-  --bg-1: #fff6fb;
-  --paper: #fffefc;
-  --accent: #ff9acc;
-  --muted: #7b6b7b;
-  --radius: 12px;
-  --shadow: rgba(34, 20, 40, 0.08);
-  --max-width: 1000px;
-}
-
-/* ---------- Base ---------- */
-body {
   margin: 0;
-  padding: 24px;
-  background: radial-gradient(1200px at 10% 10%, #fff1f7 0%, transparent 12%),
-    radial-gradient(900px at 90% 90%, #f0fff7 0%, transparent 12%), var(--bg-1);
-  font-family: "Nunito", sans-serif;
-  display: flex;
-  justify-content: center;
+  padding: 0;
 }
 
-.site {
-  width: 760px;
-  margin: 30px auto;
-  background: #fff;
+/* MAIN LAYOUT TABLE */
+.layout {
+  width: 850px;
+  margin: 20px auto;
   border: 3px double #ff99cc;
-  padding: 15px;
-  box-shadow: 0 0 15px #ffb3e0;
+  background: #ffffffcc;
 }
 
-/* ---------- Sidebar ---------- */
+/* SIDEBAR */
 .sidebar {
-  background: var(--paper);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: 0 6px 18px var(--shadow);
-  border: 2px dashed rgba(200, 150, 190, 0.12);
-  position: sticky;
-  top: 24px;
+  width: 200px;
+  background: #fff0f9 url("https://i.imgur.com/X7rYF6S.gif");
+  border-right: 3px double #ff99cc;
+  padding: 10px;
+  vertical-align: top;
 }
 
-.logo {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+.title {
+  font-family: "Comic Sans MS", Verdana;
+  font-size: 20px;
+  color: #ff3399;
+  text-align: center;
+  text-shadow: 1px 1px 1px #ffffff;
 }
 
-.logo img {
-  width: 46px;
-  height: 46px;
-  border-radius: 8px;
-}
-
-.subtitle {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.nav {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.avatar {
+  width: 150px;
+  border: 3px ridge #ff99cc;
+  display: block;
+  margin: 10px auto;
+  background: #fff;
 }
 
 .nav a {
   display: block;
-  margin: 5px 0;
-  padding: 6px 10px;
-  background: #ffe6f2;
-  border: 2px outset #ffb6d9;
-  color: #d91682;
-  font-size: 11px;
+  background: #ffd6ec;
+  border: 2px outset #ff9ccd;
+  color: #cc0077;
   text-decoration: none;
+  text-align: center;
+  margin: 5px 0;
+  padding: 6px;
+  font-size: 11px;
 }
 
 .nav a:hover {
-  background: #ffd4eb;
+  background: #ffc3e4;
   border-style: inset;
 }
 
-.status {
-  margin-top: 14px;
-  padding: 10px;
-  background: #fff7ff;
-  border-radius: 8px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+/* MAIN CONTENT AREA */
+.content {
+  padding: 15px;
+  vertical-align: top;
+  background: #ffffffdd url("https://i.imgur.com/1uE3v6E.gif");
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #ffd7ef;
-  border-radius: 50%;
+.header {
+  font-family: "Comic Sans MS";
+  font-size: 18px;
+  color: #ff3399;
+  border-bottom: 2px dotted #ff99cc;
+  padding-bottom: 4px;
 }
 
-.images-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 12px;
+.sparkle {
+  width: 50px;
+  display: block;
+  margin: 10px auto;
 }
 
-.images-grid img {
-  width: 100%;
-  height: 72px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.links {
-  margin-top: 12px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.chip {
-  padding: 6px 8px;
-  font-size: 12px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-}
-
-/* ---------- Main content ---------- */
-.main {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: 0 8px 26px rgba(20, 10, 30, 0.06);
-}
-
-.hero {
-  display: flex;
-  gap: 18px;
-}
-
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-text h2 {
-  margin: 0;
-  font-family: "Press Start 2P";
-  font-size: 16px;
-  color: var(--accent);
-}
-
-h1,
-h2,
-.jp-heading {
-  font-family: "Comic Sans MS", "MS Gothic", Verdana;
-  font-size: 20px;
-  color: #ff66aa;
-  text-shadow: 1px 1px 0 #fff;
-}
-
-.repeat-box {
-  margin-top: 12px;
-  background: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px dashed rgba(200, 150, 190, 0.13);
-  font-family: "Press Start 2P";
-  font-size: 11px;
-  white-space: pre-wrap;
-  color: #8a6b8a;
-}
-
-.updates {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.update {
-  background: #fff;
-  padding: 8px;
-  border-radius: 8px;
-}
-
-/* ---------- Comments ---------- */
-.comment-wrap {
-  margin-top: 20px;
-}
-
-textarea {
-  width: 100%;
-  min-height: 84px;
-  border-radius: 8px;
-  padding: 10px;
-  resize: vertical;
-}
-
-.controls {
-  margin-top: 8px;
-  display: flex;
-  gap: 8px;
-}
-
-.btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.btn.secondary {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.comment-list {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.comment {
-  background: #fff;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-footer {
-  margin-top: 16px;
-  text-align: right;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 880px) {
-  .site {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    position: relative;
-    top: auto;
-  }
-  .avatar {
-    width: 84px;
-    height: 84px;
-  }
-}
+/* INPUTS */
 .input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #f3c0d8;
-  border-radius: 8px;
-  background: #fff4fa;
-  font-family: inherit;
+  width: 95%;
+  padding: 8px;
+  margin: 8px 0;
+  background: #fff8fe;
+  border: 2px dotted #ff9ccd;
+  font-size: 12px;
+}
+
+.button {
+  background: #ffd6ec;
+  border: 2px outset #ff9ccd;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #cc0077;
+}
+
+.button:hover {
+  background: #ffc6e4;
+  border-style: inset;
+}
+
+.small {
+  font-size: 11px;
+}
+
+/* COMMENTS */
+.comment-list {
+  margin-top: 15px;
 }
 
 .comment-box {
-  border: 2px dotted #ff9ccd;
-  padding: 8px;
-  background: #fff9fc;
+  background: #fff0fa;
+  border: 2px dotted #ff99cc;
+  padding: 10px;
   margin: 10px 0;
 }
 
 .comment-name {
-  font-weight: bold;
+  font-size: 11px;
   color: #cc0077;
-  font-size: 12px;
+  font-weight: bold;
   text-decoration: underline;
 }
 
 .comment-text {
-  white-space: pre-wrap;
-  color: #444;
-  font-size: 0.95rem;
+  font-size: 12px;
+  margin-top: 5px;
 }

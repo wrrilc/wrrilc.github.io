@@ -1,130 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Cutie Realm — Home</title>
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
+    <title>Cutie Realm 2000s</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <div class="site">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="logo">
-          <img src="https://i.imgur.com/6J58IeY.png" alt="logo" />
-          <div>
-            <h1>cutie realm</h1>
-            <div class="subtitle">home of small things</div>
+    <!-- PAGE WRAPPER TABLE (VERY 2000's) -->
+    <table class="layout" cellspacing="0" cellpadding="0">
+      <tr>
+        <!-- SIDEBAR -->
+        <td class="sidebar">
+          <h1 class="title">✿ cutie realm ✿</h1>
+
+          <img src="images/avatar.png" class="avatar" alt="avatar" />
+
+          <div class="nav">
+            <a href="index.html">home</a>
+            <a href="about.html">about me</a>
+            <a href="diary.html">diary</a>
+            <a href="blog.html">blog</a>
           </div>
-        </div>
 
-        <nav class="nav">
-          <a href="index.html">home</a>
-          <a href="about.html">about</a>
-          <a href="diary.html">diary</a>
-          <a href="blog.html">blog</a>
-        </nav>
+          <img src="https://i.imgur.com/n1TRy9E.gif" class="divider" />
+          <p><b>mood:</b> dreamy</p>
+          <p><b>status:</b> typing...</p>
+          <img src="https://i.imgur.com/n1TRy9E.gif" class="divider" />
+        </td>
 
-        <div class="status">
-          <span class="dot"></span>
-          <div>
-            <div class="mood">mood: sleepy</div>
-            <small id="statusText">status: drinking melon soda</small>
-          </div>
-        </div>
-
-        <div class="images-grid">
-          <img src="https://i.imgur.com/1qkYQ3Y.png" />
-          <img src="https://i.imgur.com/wx2c8QF.png" />
-          <img src="https://i.imgur.com/ExdKOOz.png" />
-          <img src="https://i.imgur.com/6J58IeY.png" />
-        </div>
-
-        <div class="links">
-          <div class="chip">resources</div>
-          <div class="chip">stationary</div>
-          <div class="chip">pixels</div>
-        </div>
-      </aside>
-
-      <!-- MAIN -->
-      <main class="main">
-        <section class="hero">
-          <div class="avatar">
-            <img src="https://i.imgur.com/6J58IeY.png" />
-          </div>
-          <div class="hero-text">
-            <h2>welcome 2 my site!</h2>
-            <p>
-              this is my cutie pie realm — a soft place for tiny things & bunny
-              dreams ☆
-            </p>
-          </div>
-        </section>
-
-        <img src="https://i.imgur.com/c3ji33l.gif" alt="sparkle" />
-        <img src="https://i.imgur.com/GIfzEak.gif" alt="star" />
-        <img src="https://i.imgur.com/n1TRy9E.gif" alt="divider" />
-
-        <article class="content">
-          <h3 class="jp-heading">よろしくね〜</h3>
+        <!-- MAIN CONTENT -->
+        <td class="content">
+          <h2 class="header">♡ welcome 2 my 2000's site ♡</h2>
 
           <p>
-            i just started this website recently :3 so things are still under
-            construction hehe !!
+            haiii !!! welcome 2 my cute little place on the internet ~ this site
+            is inspired by old piczo / geocities layouts ♡
           </p>
 
-          <div class="repeat-box">
-            i love bunnies i love bunnies i love bunnies i love bunnies
-          </div>
+          <p>
+            i hope u enjoy ur stay !! this is where i keep my diary, my blog,
+            pixels, and cute stuff i find online ✿
+          </p>
 
-          <div class="updates">
-            <div class="update">
-              <strong>updates</strong><br />2025-09-03: new diary entry + secret
-              page additions ♡
-            </div>
-            <div class="update">
-              2024-02-18: new blog post & small layout tweaks
-            </div>
-          </div>
+          <img src="https://i.imgur.com/c3ji33l.gif" class="sparkle" />
 
-          <!-- COMMENTS -->
-          <section class="comment-wrap">
-            <h4>say hi!</h4>
+          <h3 class="header">guestbook ♡ leave a message</h3>
 
-            <input
-              id="usernameInput"
-              class="input"
-              placeholder="your name..."
-            />
+          <!-- USERNAME -->
+          <input id="usernameInput" class="input" placeholder="your name..." />
 
-            <textarea
-              id="commentInput"
-              class="input"
-              placeholder="your message..."
-            ></textarea>
+          <!-- COMMENT -->
+          <textarea
+            id="commentInput"
+            class="input"
+            placeholder="your message..."
+          ></textarea>
 
-            <div class="controls">
-              <button class="btn" id="postBtn">post</button>
-              <button class="btn secondary" id="clearBtn">clear all</button>
-              <div class="spacer"></div>
-              <button class="btn secondary" id="statusToggle">
-                toggle status
-              </button>
-            </div>
+          <button id="postBtn" class="button">post</button>
+          <button id="clearBtn" class="button small">clear</button>
 
-            <div class="comment-list" id="commentsList"></div>
-          </section>
-
-          <footer>© cutie realm 2025</footer>
-        </article>
-      </main>
-    </div>
+          <!-- COMMENT LIST -->
+          <div id="commentsList" class="comment-list"></div>
+        </td>
+      </tr>
+    </table>
 
     <script src="script.js"></script>
   </body>
