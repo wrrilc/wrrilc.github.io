@@ -1,132 +1,308 @@
-/* ✿ 2000's TILE BACKGROUND ✿ */
-body {
-  background: url("https://i.imgur.com/RA2W8Ac.gif");
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 12px;
-  color: #333;
-  margin: 0;
-  padding: 0;
+/* --------- 2000s Y2K STYLE --------- */
+:root {
+  --pink: #ff66aa;
+  --soft: #fff0fb;
+  --accent: #ff99cc;
+  --shadow: rgba(0, 0, 0, 0.12);
 }
 
-/* MAIN LAYOUT TABLE */
+/* classic tiled background */
+body {
+  margin: 0;
+  font-family: "Verdana", "Arial", sans-serif;
+  font-size: 12px;
+  color: #222;
+  background: url("https://i.imgur.com/RA2W8Ac.gif") repeat;
+}
+
+/* retro marquee */
+.retro-marquee {
+  background: linear-gradient(90deg, #fff0fb, #fff4f9);
+  padding: 6px 0;
+  font-weight: bold;
+  color: var(--pink);
+  border-bottom: 3px double var(--accent);
+}
+
+/* main boxed layout (table) */
 .layout {
-  width: 850px;
+  width: 860px;
   margin: 20px auto;
-  border: 3px double #ff99cc;
-  background: #ffffffcc;
+  border: 4px double #ff99cc;
+  background: #fffefc;
+  box-shadow: 0 8px 20px var(--shadow);
 }
 
 /* SIDEBAR */
 .sidebar {
-  width: 200px;
-  background: #fff0f9 url("https://i.imgur.com/X7rYF6S.gif");
-  border-right: 3px double #ff99cc;
+  width: 220px;
   padding: 10px;
+  background: linear-gradient(180deg, #fff7fb, #fff0f5);
+  border-right: 3px double var(--accent);
   vertical-align: top;
 }
 
-.title {
-  font-family: "Comic Sans MS", Verdana;
-  font-size: 20px;
-  color: #ff3399;
+.site-title {
+  font-family: "Comic Sans MS", "Verdana";
+  color: var(--pink);
   text-align: center;
-  text-shadow: 1px 1px 1px #ffffff;
+  margin: 6px 0 8px;
+  font-size: 20px;
+  text-shadow: 1px 1px 0 #fff;
 }
 
 .avatar {
-  width: 150px;
-  border: 3px ridge #ff99cc;
   display: block;
-  margin: 10px auto;
+  margin: 8px auto;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px ridge #ffbcd9;
   background: #fff;
 }
 
-.nav a {
+.nav {
+  margin-top: 10px;
+}
+.nav-link {
   display: block;
-  background: #ffd6ec;
-  border: 2px outset #ff9ccd;
-  color: #cc0077;
   text-decoration: none;
-  text-align: center;
-  margin: 5px 0;
+  color: #b3005c;
+  background: #ffd6ec;
   padding: 6px;
-  font-size: 11px;
+  margin: 6px 0;
+  border: 2px outset #ff9ccd;
+  text-align: center;
+  font-size: 12px;
 }
-
-.nav a:hover {
-  background: #ffc3e4;
+.nav-link:hover {
   border-style: inset;
+  background: #ffcfe6;
 }
 
-/* MAIN CONTENT AREA */
-.content {
-  padding: 15px;
-  vertical-align: top;
-  background: #ffffffdd url("https://i.imgur.com/1uE3v6E.gif");
+/* sidebar sections */
+.sidebar-section {
+  margin-top: 12px;
+  padding-top: 6px;
+  border-top: 1px dashed #ffd9ef;
 }
-
-.header {
-  font-family: "Comic Sans MS";
-  font-size: 18px;
-  color: #ff3399;
-  border-bottom: 2px dotted #ff99cc;
-  padding-bottom: 4px;
-}
-
-.sparkle {
-  width: 50px;
+.divider {
   display: block;
-  margin: 10px auto;
+  margin: 8px auto;
+  width: 120px;
 }
 
-/* INPUTS */
+/* CONTENT */
+.content {
+  padding: 14px;
+  background: linear-gradient(180deg, #ffffff, #fffafc);
+  position: relative; /* stickers absolute inside */
+  min-height: 520px;
+}
+
+.page-header {
+  font-family: "Comic Sans MS";
+  color: var(--pink);
+  font-size: 20px;
+  margin: 0 0 6px;
+}
+.lead {
+  color: #5a2a4a;
+  margin: 8px 0 12px;
+}
+
+/* panels / boxes */
+.panel {
+  background: #fff7fb;
+  border: 2px dotted #ff9ccd;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+
+.cute-hr {
+  border: none;
+  height: 8px;
+  background: linear-gradient(90deg, #fff0fb, #fff1f9);
+  margin: 12px 0;
+}
+
+/* inputs & buttons */
+.small-input,
+.big-input,
 .input {
+  display: block;
   width: 95%;
   padding: 8px;
-  margin: 8px 0;
-  background: #fff8fe;
-  border: 2px dotted #ff9ccd;
-  font-size: 12px;
+  margin: 6px 0;
+  border: 2px dotted #ffb6df;
+  background: #fff9fc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.big-input {
+  min-height: 80px;
+  resize: vertical;
 }
 
 .button {
   background: #ffd6ec;
+  color: #b3005c;
   border: 2px outset #ff9ccd;
-  padding: 5px 12px;
-  font-size: 12px;
+  padding: 6px 10px;
   cursor: pointer;
-  color: #cc0077;
+  margin-right: 6px;
+  font-weight: 700;
 }
-
+.button.small {
+  padding: 4px 8px;
+  font-size: 12px;
+}
 .button:hover {
-  background: #ffc6e4;
   border-style: inset;
 }
 
-.small {
-  font-size: 11px;
+/* messages / guestbook */
+.messages {
+  margin-top: 10px;
+  max-height: 220px;
+  overflow: auto;
+  padding-right: 8px;
 }
-
-/* COMMENTS */
-.comment-list {
-  margin-top: 15px;
+.message {
+  background: #fff4f9;
+  border: 2px dashed #ffb0d6;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
 }
-
-.comment-box {
-  background: #fff0fa;
-  border: 2px dotted #ff99cc;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.comment-name {
-  font-size: 11px;
-  color: #cc0077;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.comment-text {
+.msg-name {
+  font-weight: 700;
+  color: #a00064;
   font-size: 12px;
-  margin-top: 5px;
+}
+.msg-time {
+  font-size: 10px;
+  color: #7b5a6b;
+  float: right;
+}
+
+/* tagboard */
+.tagboard {
+  background: #fff;
+  border: 2px dotted #ffd9ef;
+  padding: 8px;
+  border-radius: 6px;
+}
+.tagboard-area {
+  max-height: 120px;
+  overflow: auto;
+  padding: 6px;
+  background: #fff8fb;
+  margin-bottom: 6px;
+}
+
+/* sparkles (floating) */
+#sparkles {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url("https://i.imgur.com/c3ji33l.gif") center/contain no-repeat;
+  opacity: 0.95;
+  animation: drift 6s linear infinite;
+}
+@keyframes drift {
+  0% {
+    transform: translateY(-20%) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(40vh) rotate(20deg) scale(1.1);
+  }
+  100% {
+    transform: translateY(80vh) rotate(80deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* sticker layer sits above content (but below UI) */
+.sticker-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* draggable sticker */
+.sticker {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  cursor: grab;
+  pointer-events: auto; /* allow dragging */
+}
+
+/* glitter output */
+.glitter-output .glitter {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 6px;
+  background: linear-gradient(90deg, #fff0fb, #fff8ff);
+  border: 2px solid #ffd9ef;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(200, 0, 120, 0.08);
+}
+.glitter-pink {
+  color: #d4006b;
+  text-shadow: 0 0 6px rgba(255, 150, 200, 0.7);
+}
+.glitter-blue {
+  color: #0066cc;
+  text-shadow: 0 0 8px rgba(120, 200, 255, 0.6);
+}
+.glitter-gold {
+  color: #b46b08;
+  text-shadow: 0 0 6px rgba(255, 220, 120, 0.6);
+}
+
+/* footer */
+.foot {
+  margin-top: 12px;
+  text-align: right;
+  font-size: 11px;
+  color: #7b5a6b;
+}
+
+/* blinkies */
+.blink {
+  width: 40px;
+  margin: 4px;
+}
+
+/* responsive tiny tweak */
+@media (max-width: 920px) {
+  .layout {
+    width: 95%;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
 }
