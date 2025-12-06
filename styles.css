@@ -14,7 +14,9 @@ body {
 }
 
 body {
-  background: url("https://i.imgur.com/f1J6QpS.gif") repeat fixed;
+  background-image: url("https://dl6.glitter-graphics.net/pub/426/426396co86hhn7kj.jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
   font-family: Tahoma, sans-serif;
   font-size: 14px;
   color: #222;
