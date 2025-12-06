@@ -418,3 +418,15 @@ body {
   line-height: 1.6;
   color: #57354e;
 }
+span.blacktext12 {
+  background-image: url("http://dl4.glitter-graphics.net/pub/1309/1309664ug506dirwd.gif");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  width: 435px;
+  height: 75px;
+  display: block;
+}
+span.blacktext12 img {
+  display: none;
+}
