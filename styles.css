@@ -120,8 +120,8 @@ body {
   padding: 2px 4px; /* MUCH smaller buttons */
   font-size: 10px;
   border-radius: 3px;
-  border: 1px solid #8fb9ff;
-  background: #e1eeff;
+  border: 1px solid #b4008d;
+  background: #ec74aa;
 }
 .pbtn:hover {
   background: #cbdfff;
