@@ -393,3 +393,30 @@ body {
     border: none;
   }
 }
+/* --- TOP BANNER --- */
+.top-banner {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+span.blacktext12 {
+  visibility: visible !important;
+  background-image: url("https://dl4.glitter-graphics.net/pub/1309/1309664ug506dirwd.gif");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  width: 435px;
+  height: 75px;
+  display: block !important;
+  font-size: 0;
+  letter-spacing: -0.5px;
+}
+
+span.blacktext12 img {
+  display: none;
+}
+/* --- GLITTER CURSOR ALWAYS ENABLED --- */
+body {
+  cursor: url("https://media.tumblr.com/tumblr_m98z02EFLe1qid2nw.gif"), auto;
+}
