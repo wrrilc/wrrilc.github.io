@@ -100,7 +100,7 @@ body {
 .player {
   margin-top: 10px;
   width: 95%;
-  background: linear-gradient(180deg, #e6f3ff, #dceeff);
+  background: linear-gradient(180deg, #e083c8, #eecbe0);
   border: 2px outset #ca2aad;
   border-radius: 5px;
   padding: 4px 6px; /* very small padding */
