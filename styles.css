@@ -1,435 +1,393 @@
-/* ---------- Y2K Retro Full CSS (updated: toolbox removed, bottom strip removed, player moved) ---------- */
-:root {
-  --pink: #ff66aa;
-  --accent: #ff99cc;
-  --xpblue: #2b8be0;
-  --shadow: rgba(0, 0, 0, 0.12);
-}
-
-/* body tile */
-body {
+/* -------------------------------------------------------
+   BASE RESET
+-------------------------------------------------------- */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Verdana", "Arial", sans-serif;
-  font-size: 13px;
-  color: #222;
-
-  background-image: url("http://dl6.glitter-graphics.net/pub/426/426396co86hhn7kj.jpg");
-  background-attachment: fixed;
-  background-repeat: repeat;
-}
-
-/* marquee */
-.retro-marquee {
-  background: linear-gradient(90deg, #fff0fb, #fff4f9);
-  padding: 6px 0;
-  font-weight: bold;
-  color: var(--pink);
-  border-bottom: 3px double var(--accent);
-}
-
-/* table layout boxed */
-.layout {
-  width: 980px;
-  margin: 18px auto;
-  border: 4px double #ff99cc;
-  background: #fffefc;
-  box-shadow: 0 8px 20px var(--shadow);
-}
-.sidebar {
-  width: 200px;
-  padding: 10px;
-  vertical-align: top;
-  background: linear-gradient(180deg, #fff7fb, #fff0f5);
-  border-right: 3px double var(--accent);
-}
-.sidebar.right {
-  border-left: 3px double var(--accent);
-  border-right: none;
-}
-.site-title {
-  font-family: "Comic Sans MS", Verdana;
-  color: var(--pink);
-  text-align: center;
-  font-size: 20px;
-  margin: 6px 0;
-  text-shadow: 1px 1px 0 #fff;
-}
-.avatar {
-  display: block;
-  margin: 8px auto;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border: 3px ridge #ffbcd9;
-  background: #fff;
-}
-.nav-link {
-  display: block;
-  text-decoration: none;
-  color: #b3005c;
-  background: #ffd6ec;
-  padding: 6px;
-  margin: 6px 0;
-  border: 2px outset #ff9ccd;
-  text-align: center;
-  font-size: 12px;
-}
-.nav-link:hover {
-  border-style: inset;
-  background: #ffcfe6;
-}
-
-/* left tool grid */
-.button-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.tool-btn {
-  background: #ffd6ec;
-  border: 2px outset #ff9ccd;
-  padding: 6px;
-  cursor: pointer;
-  color: #b3005c;
-  font-weight: 700;
-  border-radius: 4px;
-}
-.tool-btn:hover {
-  border-style: inset;
-}
-
-/* player (now in sidebar) */
-/* --- ULTRA SHORT XP PLAYER --- */
-.player {
-  margin-top: 10px;
-  width: 95%;
-  background: linear-gradient(180deg, #e083c8, #eecbe0);
-  border: 2px outset #ca2aad;
-  border-radius: 5px;
-  padding: 4px 6px; /* very small padding */
-  font-size: 11px; /* tiny text */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-}
-
-/* top row: play, pause, next */
-.player-controls {
-  display: flex;
-  align-items: center;
-  gap: 3px; /* tighter spacing */
-}
-
-/* tiny buttons */
-.pbtn {
-  padding: 2px 4px; /* MUCH smaller buttons */
-  font-size: 10px;
-  border-radius: 3px;
-  border: 1px solid #b4008d;
-  background: #ec74aa;
-}
-.pbtn:hover {
-  background: #a91e82;
-}
-
-/* track name text — small & compact */
-.track-title {
-  font-size: 10px;
-  margin-top: 2px;
-  padding: 2px 4px;
-  background: #a1189f;
-  border-radius: 3px;
-  border: 1px solid #7f116c;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* lower section (timeline + volume) */
-.player-controls-2 {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  margin-top: 3px;
-}
-
-/* very small volume slider & timeline */
-.player input[type="range"] {
-  height: 6px;
-  width: 50px;
-}
-.timeline {
-  width: 80px;
-}
-
-/* content area */
-.content {
-  padding: 14px;
-  background: linear-gradient(180deg, #ffffff, #fffafc);
-  position: relative;
-  min-height: 520px;
-  overflow: visible;
-}
-.page-header {
-  font-family: "Comic Sans MS";
-  color: var(--pink);
-  font-size: 20px;
-  margin: 0 0 6px;
-}
-.lead {
-  color: #5a2a4a;
-  margin: 8px 0 12px;
-}
-.cute-hr {
-  border: none;
-  height: 8px;
-  background: linear-gradient(90deg, #fff0fb, #fff1f9);
-  margin: 12px 0;
-}
-
-/* panels */
-.panel {
-  background: #fff7fb;
-  border: 2px dotted #ff9ccd;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-}
-.thumb-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.thumb {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  border: 2px solid #ffdfee;
-  cursor: pointer;
-}
-
-/* sticker layer absolute */
-.sticker-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 50;
-}
-.sticker {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  cursor: grab;
-  pointer-events: auto;
+  padding: 0;
   user-select: none;
 }
 
-/* sparkles layers */
-.sparkles-layer,
-.falling-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 5;
-  overflow: hidden;
+html,
+body {
+  height: 100%;
 }
 
-/* message / guestbook */
-.messages {
-  margin-top: 10px;
-  max-height: 220px;
-  overflow: auto;
-  padding-right: 8px;
+body {
+  background: url("https://i.imgur.com/f1J6QpS.gif") repeat fixed;
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  color: #222;
+  overflow-x: hidden;
 }
-.message {
-  background: #fff4f9;
-  border: 2px dashed #ffb0d6;
-  padding: 8px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-}
-.msg-name {
-  font-weight: 700;
-  color: #a00064;
+
+/* -------------------------------------------------------
+   MARQUEE
+-------------------------------------------------------- */
+.retro-marquee {
+  background: #ffc8fa;
+  padding: 4px;
   font-size: 12px;
-}
-.msg-time {
-  font-size: 10px;
-  color: #7b5a6b;
-  float: right;
+  border-bottom: 2px dotted hotpink;
+  color: #7a006c;
 }
 
-/* right panel & bottom panel visuals */
-.right-panel {
-  position: static;
+/* -------------------------------------------------------
+   TABLE LAYOUT
+-------------------------------------------------------- */
+.layout {
   width: 100%;
-  margin-top: 10px;
-  background: #fff8fb;
-  border: 2px dotted #ffd9ef;
-  padding: 8px;
+  max-width: 1200px;
+  margin: 10px auto;
+  border-collapse: collapse;
 }
 
-/* removed bottom-panel fixed bar; if you want to re-enable make it static inside main */
+/* -------------------------------------------------------
+   SIDEBARS
+-------------------------------------------------------- */
+.sidebar {
+  width: 200px;
+  background: rgba(255, 240, 255, 0.9);
+  padding: 10px;
+  border-right: 2px groove #ca79cc;
+}
 
-/* tiny help - now static so it won't float over UI */
-.help {
-  display: none;
-  margin-top: 12px;
+.sidebar.right {
+  border-left: 2px groove #ca79cc;
+  border-right: none;
+}
+
+/* Left title */
+.site-title {
+  font-size: 20px;
   text-align: center;
+  color: #d100b9;
+  text-shadow: 0 0 5px hotpink;
+  margin-bottom: 10px;
 }
 
-/* sparkle element */
-.sparkle {
+/* Avatar */
+.avatar {
+  width: 100%;
+  border: 2px solid hotpink;
+  margin-bottom: 10px;
+}
+
+/* Sidebar sections */
+.sidebar-section {
+  margin: 15px 0;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dotted hotpink;
+}
+
+.divider {
+  width: 100%;
+  margin: 4px 0;
+}
+
+/* NAV LINKS */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-link {
+  background: #ffd6ff;
+  border: 1px solid hotpink;
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  color: #d100b9;
+  font-size: 13px;
+}
+
+.nav-link:hover {
+  background: #ffb9ff;
+}
+
+/* -------------------------------------------------------
+   GLITTER BANNER AREA
+-------------------------------------------------------- */
+.blacktext12 {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background: url("http://dl4.glitter-graphics.net/pub/1085/1085774i8if3vt1zu.gif")
+    center/contain no-repeat;
+  margin-bottom: 6px;
+  border: 1px solid hotpink;
+}
+
+/* -------------------------------------------------------
+   PLAYER (WINAMP STYLE)
+-------------------------------------------------------- */
+.player {
+  margin-top: 14px;
+  background: #ffe6ff;
+  padding: 8px;
+  border: 2px groove hotpink;
+}
+
+.player-title {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #b4009c;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+.pbtn {
+  background: #ffcfff;
+  border: 1px solid hotpink;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.pbtn:hover {
+  background: #ffb1ff;
+}
+
+.p-info {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 4px;
+  color: purple;
+}
+
+.player-controls-2 {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.seek {
+  width: 120px;
+}
+
+.vol {
+  width: 60px;
+}
+
+.player-playlist {
+  margin-top: 10px;
+  background: #fff5ff;
+  border: 1px dotted hotpink;
+  padding: 5px;
+  height: 100px;
+  overflow-y: auto;
+}
+
+/* -------------------------------------------------------
+   CONTENT AREA
+-------------------------------------------------------- */
+.content {
+  padding: 15px;
+  background: rgba(255, 230, 255, 0.9);
+}
+
+.page-header {
+  font-size: 22px;
+  color: #b0009b;
+  text-shadow: 0 0 4px pink;
+  margin-bottom: 10px;
+}
+
+.lead {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.cute-hr {
+  border: none;
+  border-bottom: 2px dotted hotpink;
+  margin: 15px 0;
+}
+
+/* -------------------------------------------------------
+   PANELS
+-------------------------------------------------------- */
+.panel {
+  padding: 10px;
+  background: #fff0ff;
+  border: 2px groove hotpink;
+  margin-bottom: 15px;
+}
+
+.panel h3 {
+  color: #b10097;
+  margin-bottom: 4px;
+}
+
+/* -------------------------------------------------------
+   GUESTBOOK
+-------------------------------------------------------- */
+.guest-inputs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.small-input {
+  flex: 1;
+  border: 1px solid hotpink;
+  padding: 3px;
+  background: #fffaff;
+}
+
+.big-input {
+  width: 100%;
+  height: 70px;
+  border: 1px solid hotpink;
+  padding: 4px;
+  background: #fffaff;
+  margin-bottom: 6px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.button {
+  background: #ffd2ff;
+  border: 1px solid hotpink;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #ffb0ff;
+}
+
+.button.small {
+  padding: 3px 5px;
+}
+
+.messages {
+  background: #fff9ff;
+  padding: 8px;
+  border: 1px dotted hotpink;
+  min-height: 60px;
+}
+
+/* -------------------------------------------------------
+   STICKER PANEL + THUMBNAILS
+-------------------------------------------------------- */
+.thumb-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 1px solid hotpink;
+  background: #ffe7ff;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.thumb:hover {
+  background: #ffd0ff;
+}
+
+/* -------------------------------------------------------
+   DRAGGABLE STICKERS (PLACED ON PAGE)
+-------------------------------------------------------- */
+.sticker-layer img {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  background: url("https://i.imgur.com/c3ji33l.gif") center/contain no-repeat;
-  opacity: 0.95;
-  animation: drift 6s linear infinite;
-}
-@keyframes drift {
-  0% {
-    transform: translateY(-10vh) scale(0.8);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  60% {
-    transform: translateY(40vh) rotate(20deg) scale(1.1);
-  }
-  100% {
-    transform: translateY(80vh) rotate(80deg) scale(0.6);
-    opacity: 0;
-  }
+  cursor: grab;
+  max-width: 200px;
+  max-height: 200px;
 }
 
-/* falling sparkle */
-.fall {
+.sticker-layer img:active {
+  cursor: grabbing;
+}
+
+/* -------------------------------------------------------
+   RIGHT PANEL (INSIDE CONTENT)
+-------------------------------------------------------- */
+.right-panel {
+  background: #fff4ff;
+  border: 2px groove hotpink;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+/* -------------------------------------------------------
+   SPECIAL EFFECT LAYERS
+-------------------------------------------------------- */
+.sparkles-layer {
+  pointer-events: none;
   position: absolute;
-  width: 18px;
-  height: 18px;
-  background: url("https://i.imgur.com/GIfzEak.gif") center/contain no-repeat;
-  animation: fallAnim linear infinite;
-}
-@keyframes fallAnim {
-  from {
-    transform: translateY(-20vh);
-  }
-  to {
-    transform: translateY(110vh);
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* pixel filter */
-.pixelated {
-  image-rendering: pixelated;
-  filter: contrast(1.02) saturate(1.05);
-  transform-origin: 0 0;
+.falling-layer {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* responsive touch */
+/* -------------------------------------------------------
+   XP BORDER MODE (TOGGLE CLASS)
+-------------------------------------------------------- */
+.xp-borders * {
+  border: 2px groove #c0c0ff !important;
+}
+
+/* -------------------------------------------------------
+   FOOTER
+-------------------------------------------------------- */
+.foot {
+  text-align: center;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #77006f;
+}
+
+/* -------------------------------------------------------
+   MOBILE RESPONSIVE
+-------------------------------------------------------- */
 @media (max-width: 1000px) {
   .layout {
-    width: 95%;
+    display: block;
   }
-  .right-panel {
-    display: none;
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 10px;
+    border-right: none;
+    border-left: none;
   }
-}
-/* --- NOTEBOOK CONTAINER --- */
-.notebook {
-  width: 720px;
-  margin: 30px auto;
-  display: flex;
-  position: relative;
-}
 
-/* --- HOLES + RINGS (left side) --- */
-.notebook-rings {
-  width: 60px;
-  background: repeating-linear-gradient(#eee, #eee 14px, #ddd 14px, #ddd 28px);
-  border-right: 3px double #d8b0c8;
-  box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.08);
-  position: relative;
-}
-
-.notebook-rings::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 50%;
-  width: 14px;
-  transform: translateX(-50%);
-  background: url("https://i.imgur.com/H6YMegO.png") repeat-y center / contain;
-  opacity: 0.9;
-}
-
-/* --- NOTEBOOK PAGE --- */
-.notebook-page {
-  flex: 1;
-  background: white;
-  padding: 30px 40px;
-  border-left: 3px solid #ff9aca;
-  background-image: linear-gradient(white 80px, rgba(255, 255, 255, 0)),
-    repeating-linear-gradient(
-      #ffd7ec 0,
-      #ffd7ec 1px,
-      transparent 1px,
-      transparent 24px
-    );
-  background-blend-mode: normal, multiply;
-  background-size: 100% 24px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* --- PAGE TITLE --- */
-.notebook-title {
-  font-family: "Comic Sans MS", cursive;
-  font-size: 24px;
-  color: #ff58a8;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 0 white;
-}
-
-/* --- DIARY ENTRY BOXES --- */
-.diary-entry {
-  background: rgba(255, 245, 251, 0.7);
-  border-left: 4px solid #ff9ccd;
-  padding: 12px 18px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  backdrop-filter: blur(2px);
-}
-
-.entry-date {
-  margin: 0 0 6px;
-  color: #c35588;
-  font-size: 14px;
-  font-weight: bold;
-  text-shadow: 1px 0 0 #ffe7f4;
-}
-
-.diary-entry p {
-  margin: 0;
-  font-family: "Georgia", serif;
-  line-height: 1.6;
-  color: #57354e;
-}
-span.blacktext12 {
-  background-image: url("http://dl4.glitter-graphics.net/pub/1309/1309664ug506dirwd.gif");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: transparent;
-  width: 435px;
-  height: 75px;
-  display: block;
-}
-span.blacktext12 img {
-  display: none;
+  .sidebar.right {
+    border: none;
+  }
 }
