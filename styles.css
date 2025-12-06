@@ -12,7 +12,10 @@ body {
   font-family: "Verdana", "Arial", sans-serif;
   font-size: 13px;
   color: #222;
-  background: url("https://i.imgur.com/RA2W8Ac.gif") repeat;
+
+  background-image: url("http://dl6.glitter-graphics.net/pub/426/426396co86hhn7kj.jpg");
+  background-attachment: fixed;
+  background-repeat: repeat;
 }
 
 /* marquee */
