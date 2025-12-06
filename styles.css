@@ -110,7 +110,7 @@ body {
 .player-title {
   font-weight: 700;
   color: #074f8b;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .player-controls {
   display: flex;
@@ -120,7 +120,7 @@ body {
 .pbtn {
   background: #bfe1ff;
   border: 2px outset #9fc9ff;
-  padding: 6px 8px;
+  padding: 4px 6px;
   cursor: pointer;
   font-weight: 700;
 }
@@ -134,7 +134,7 @@ body {
   padding-left: 6px;
 }
 .player-controls-2 {
-  margin-top: 8px;
+  margin-top: 4px;
   display: flex;
   gap: 8px;
   align-items: center;
