@@ -124,7 +124,7 @@ body {
   background: #ec74aa;
 }
 .pbtn:hover {
-  background: #cbdfff;
+  background: #a91e82;
 }
 
 /* track name text — small & compact */
@@ -132,9 +132,9 @@ body {
   font-size: 10px;
   margin-top: 2px;
   padding: 2px 4px;
-  background: #f3f7ff;
+  background: #a1189f;
   border-radius: 3px;
-  border: 1px solid #bcd3ff;
+  border: 1px solid #7f116c;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
