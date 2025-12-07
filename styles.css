@@ -338,3 +338,83 @@ body {
     height: 80px;
   }
 }
+/* --- NOTEBOOK CONTAINER --- */
+.notebook {
+  width: 720px;
+  margin: 30px auto;
+  display: flex;
+  position: relative;
+}
+
+/* --- HOLES + RINGS (left side) --- */
+.notebook-rings {
+  width: 60px;
+  background: repeating-linear-gradient(#eee, #eee 14px, #ddd 14px, #ddd 28px);
+  border-right: 3px double #d8b0c8;
+  box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.notebook-rings::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 50%;
+  width: 14px;
+  transform: translateX(-50%);
+  background: url("https://i.imgur.com/H6YMegO.png") repeat-y center / contain;
+  opacity: 0.9;
+}
+
+/* --- NOTEBOOK PAGE --- */
+.notebook-page {
+  flex: 1;
+  background: white;
+  padding: 30px 40px;
+  border-left: 3px solid #ff9aca;
+  background-image: linear-gradient(white 80px, rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(
+      #ffd7ec 0,
+      #ffd7ec 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  background-blend-mode: normal, multiply;
+  background-size: 100% 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- PAGE TITLE --- */
+.notebook-title {
+  font-family: "Comic Sans MS", cursive;
+  font-size: 24px;
+  color: #ff58a8;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 0 white;
+}
+
+/* --- DIARY ENTRY BOXES --- */
+.diary-entry {
+  background: rgba(255, 245, 251, 0.7);
+  border-left: 4px solid #ff9ccd;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
+}
+
+.entry-date {
+  margin: 0 0 6px;
+  color: #c35588;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 0 0 #ffe7f4;
+}
+
+.diary-entry p {
+  margin: 0;
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  color: #57354e;
+}
