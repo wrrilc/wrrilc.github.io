@@ -420,3 +420,16 @@ span.blacktext12 img {
 body {
   cursor: url("https://media.tumblr.com/tumblr_m98z02EFLe1qid2nw.gif"), auto;
 }
+/* FIX TOP BANNER SIZE */
+.top-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.top-banner span.blacktext12 {
+  width: 600px; /* bigger */
+  height: 120px; /* bigger */
+  background-size: contain;
+}
