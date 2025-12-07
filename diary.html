@@ -39,55 +39,156 @@
     </div>
 
     <script>
-      function loadEntries() {
+      /* diary rendering + accordion + toggle + delete — drop this into diary.html replacing the old script */
+
+      const MOOD_MAP = {
+        dreamy: "mood-dreamy",
+        happy: "mood-happy",
+        sad: "mood-sad",
+        chill: "mood-chill",
+        // add more mappings if you like
+      };
+
+      function moodClassFromText(text) {
+        if (!text) return "mood-default";
+        const key = text.trim().toLowerCase();
+        return MOOD_MAP[key] || "mood-default";
+      }
+
+      function renderEntries() {
         const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
         const container = document.getElementById("diaryEntries");
         container.innerHTML = "";
 
         saved.forEach((entry, index) => {
-          container.innerHTML += `
-        <div class="entry-page">
-          <div class="entry-header">
-            <span class="date">📅 ${entry.date}</span>
-            <button class="delete-btn" data-index="${index}">delete</button>
-          </div>
+          // create an entry element (we use DOM methods to avoid innerHTML click issues)
+          const entryEl = document.createElement("div");
+          entryEl.className = `entry-page ${moodClassFromText(entry.mood)}`;
+          entryEl.setAttribute("data-index", index);
 
-          <p><strong>mood:</strong> ${entry.mood}</p>
-          <p><strong>listening to:</strong> ${entry.music}</p>
-          <p class="entry-text">${entry.text}</p>
-        </div>`;
+          // header
+          const header = document.createElement("div");
+          header.className = "entry-header";
+
+          const leftMeta = document.createElement("div");
+          leftMeta.className = "entry-meta-compact";
+          leftMeta.innerHTML = `<span class="date">📅 ${entry.date}</span>`;
+
+          const rightControls = document.createElement("div");
+          rightControls.style.display = "flex";
+          rightControls.style.gap = "8px";
+          rightControls.style.alignItems = "center";
+
+          // delete button
+          const del = document.createElement("button");
+          del.className = "delete-btn";
+          del.textContent = "delete";
+          del.setAttribute("data-index", index);
+
+          // arrow indicator
+          const arrow = document.createElement("span");
+          arrow.className = "entry-arrow";
+
+          rightControls.appendChild(del);
+          rightControls.appendChild(arrow);
+
+          header.appendChild(leftMeta);
+          header.appendChild(rightControls);
+
+          // small meta (mood + music)
+          const smallMeta = document.createElement("div");
+          smallMeta.className = "entry-smallmeta";
+          smallMeta.innerHTML = `<strong>mood:</strong> ${
+            entry.mood || "—"
+          } &nbsp;&nbsp; <strong>listening to:</strong> ${entry.music || "—"}`;
+
+          // entry text
+          const textP = document.createElement("p");
+          textP.className = "entry-text";
+          textP.textContent = entry.text;
+
+          // sparkles div
+          const spark = document.createElement("div");
+          spark.className = "entry-sparkles";
+
+          // assemble
+          entryEl.appendChild(header);
+          entryEl.appendChild(smallMeta);
+          entryEl.appendChild(textP);
+          entryEl.appendChild(spark);
+
+          // append to container
+          container.appendChild(entryEl);
         });
 
-        function enableEntryToggle() {
-          document.querySelectorAll(".entry-page").forEach((entry) => {
-            entry.addEventListener("click", () => {
-              entry.classList.toggle("open");
-            });
-          });
-        }
+        attachEntryBehaviors();
+      }
 
+      /* attach event handlers: toggling, delete, auto-close */
+      function attachEntryBehaviors() {
+        const entries = Array.from(document.querySelectorAll(".entry-page"));
+
+        // delete buttons: stopPropagation so clicking delete doesn't toggle
         document.querySelectorAll(".delete-btn").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            const i = e.target.getAttribute("data-index");
-            const entries = JSON.parse(
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            const idx = parseInt(btn.getAttribute("data-index"), 10);
+            const arr = JSON.parse(
               localStorage.getItem("diaryEntries") || "[]"
             );
-            entries.splice(i, 1);
-            localStorage.setItem("diaryEntries", JSON.stringify(entries));
-            loadEntries();
+            arr.splice(idx, 1);
+            localStorage.setItem("diaryEntries", JSON.stringify(arr));
+            // re-render
+            renderEntries();
           });
+        });
+
+        // click on entry toggles open; auto-close others (accordion)
+        entries.forEach((entry) => {
+          entry.addEventListener("click", (ev) => {
+            // if clicked delete inside, ignore (should be stopped already)
+            const isOpen = entry.classList.contains("open");
+
+            // close all others
+            entries.forEach((e) => {
+              if (e !== entry) e.classList.remove("open");
+            });
+
+            // toggle this one
+            if (isOpen) {
+              entry.classList.remove("open");
+            } else {
+              entry.classList.add("open");
+              // make sure it scrolls into view nicely
+              setTimeout(
+                () =>
+                  entry.scrollIntoView({ behavior: "smooth", block: "center" }),
+                220
+              );
+            }
+          });
+
+          // keyboard accessibility: Enter toggles
+          entry.addEventListener("keydown", (ev) => {
+            if (ev.key === "Enter" || ev.key === " ") {
+              ev.preventDefault();
+              entry.click();
+            }
+          });
+
+          // make focusable
+          entry.tabIndex = 0;
         });
       }
 
+      /* Save new entry */
       document.getElementById("saveEntry").addEventListener("click", () => {
         const mood = document.getElementById("moodInput").value.trim();
         const music = document.getElementById("musicInput").value.trim();
         const text = document.getElementById("diaryInput").value.trim();
-
         if (!text) return;
 
         const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
-
         saved.unshift({
           date: new Date().toLocaleDateString(),
           mood: mood || "—",
@@ -97,14 +198,16 @@
 
         localStorage.setItem("diaryEntries", JSON.stringify(saved));
 
+        // clear inputs
         document.getElementById("moodInput").value = "";
         document.getElementById("musicInput").value = "";
         document.getElementById("diaryInput").value = "";
 
-        loadEntries();
+        renderEntries();
       });
 
-      loadEntries();
+      /* initial render */
+      renderEntries();
     </script>
   </body>
 </html>
