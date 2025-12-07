@@ -58,6 +58,14 @@
         </div>`;
         });
 
+        function enableEntryToggle() {
+          document.querySelectorAll(".entry-page").forEach((entry) => {
+            entry.addEventListener("click", () => {
+              entry.classList.toggle("open");
+            });
+          });
+        }
+
         document.querySelectorAll(".delete-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             const i = e.target.getAttribute("data-index");
