@@ -300,23 +300,33 @@ body {
 }
 
 /* banner style (top banner only) */
+/* FULL-WIDTH TOP BANNER */
 .top-banner {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 8px 0;
-  pointer-events: none;
+  align-items: center;
+  padding: 10px 0;
+  margin: 0;
 }
+
+/* KEEP THE GIF SIZE CORRECT BUT CENTERED */
 .top-banner .blacktext12 {
-  display: block;
-  width: 600px; /* increase as you like */
-  height: 120px; /* increase as you like */
+  display: block !important;
+  width: auto;
+  height: auto;
   background-image: url("https://dl4.glitter-graphics.net/pub/1309/1309664ug506dirwd.gif");
   background-repeat: no-repeat;
+  background-size: contain; /* keeps proportions */
   background-position: center;
-  background-size: contain;
-  font-size: 0;
+
+  /* THIS makes it full-width but the image stays centered */
+  width: 100%;
+  max-width: 800px; /* adjust if you want it larger */
+  height: 120px; /* adjust to match image height */
+
   visibility: visible !important;
+  font-size: 0;
 }
 
 /* ensure .blacktext12 inside sidebar (if accidentally present) is hidden */
