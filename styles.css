@@ -681,13 +681,14 @@ textarea {
 /* OPTIONAL: arrow icon using pseudo-element (if you want a chevron) */
 /* Remove if you like current square arrow. Example chevron: */
 /*
+*/
+
 .entry-arrow::before {
   content: "▾";
-  display:block;
-  font-size:14px;
-  transform-origin:center;
+  display: block;
+  font-size: 14px;
+  transform-origin: center;
 }
-*/
 
 /* a11y: make delete button not trigger entry toggle when using keyboard */
 .delete-btn:focus {
