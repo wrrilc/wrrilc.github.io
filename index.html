@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- TOP BANNER -->
-    <div class="top-banner">
+    <div class="top-banner" aria-hidden="true">
       <span class="blacktext12"></span>
     </div>
 
@@ -73,17 +73,6 @@
               <button class="tool-btn" data-action="placeBlinkie">
                 place blinkie
               </button>
-            </div>
-          </div>
-
-          <!-- BANNER (glitter graphics) -->
-          <div class="sidebar-section">
-            <!-- span.blacktext12 is styled in CSS to show the banner image -->
-            <span class="blacktext12" aria-hidden="true"></span>
-            <div style="text-align: center; margin-top: 6px; font-size: 11px">
-              <a href="https://www.glitter-graphics.com" target="_blank"
-                >Extended Network Banners</a
-              >
             </div>
           </div>
 
@@ -297,8 +286,9 @@
             <h5>stamps</h5>
             <!-- RIGHT SIDEBAR: stamps (links to site) -->
             <div id="rightStampThumbs" class="thumb-row">
+              <!-- stamp images are raw <img> thumbnails so layout handles them -->
               <img
-                class="thumb"
+                class="thumb stamp-thumb"
                 src="https://dl4.glitter-graphics.net/pub/1085/1085774i8if3vt1zu.gif"
                 alt="stamp"
                 width="101"
@@ -306,7 +296,7 @@
               />
 
               <img
-                class="thumb"
+                class="thumb stamp-thumb"
                 src="https://dl9.glitter-graphics.net/pub/523/523619kq839m3zgi.gif"
                 alt="stamp"
                 width="150"
@@ -314,7 +304,7 @@
               />
 
               <img
-                class="thumb"
+                class="thumb stamp-thumb"
                 src="https://dl3.glitter-graphics.net/pub/1461/1461683v5c00dukyp.gif"
                 alt="stamp"
                 width="150"
