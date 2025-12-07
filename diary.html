@@ -1,106 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Diary — Cutie Realm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <title>My Diary</title>
+    <link rel="stylesheet" href="diary.css" />
   </head>
+
   <body>
-    <!-- OPTIONAL: reuse your site header & nav if you want -->
-
     <div class="notebook">
-      <!-- LEFT RINGS STRIP -->
-      <div class="notebook-rings"></div>
+      <!-- SPIRAL TOP -->
+      <div class="spiral"></div>
 
-      <!-- NOTEBOOK PAGE -->
-      <div class="notebook-page">
-        <h2 class="notebook-title">My Diary ♡</h2>
+      <!-- WRITE ENTRY BOX -->
+      <div class="write-box">
+        <h2>Write a Diary Entry ♡</h2>
 
-        <div class="write-entry">
-          <textarea
-            id="diaryInput"
-            placeholder="Write your diary entry here…"
-          ></textarea>
-          <button id="saveEntry">Post Entry</button>
-        </div>
+        <input
+          id="moodInput"
+          class="small-in"
+          placeholder="mood (e.g. dreamy...)"
+        />
+        <input
+          id="musicInput"
+          class="small-in"
+          placeholder="listening to (song)"
+        />
 
-        <div id="diaryEntries"></div>
+        <textarea
+          id="diaryInput"
+          placeholder="Write your entry here…"
+        ></textarea>
 
-        <!-- ENTRY 1 -->
-        <div class="diary-entry">
-          <p class="entry-date">📅 February 12, 2025</p>
-          <p>
-            Today I redesigned my entire website!! ✿ I added sparkles, blinkies,
-            and cute stamps everywhere. It feels like a magical Y2K scrapbook
-            again 💖✨
-          </p>
-        </div>
-
-        <!-- ENTRY 2 -->
-        <div class="diary-entry">
-          <p class="entry-date">📅 February 10, 2025</p>
-          <p>
-            I drank strawberry milk and listened to old-school anime music. Then
-            I coded for 3 hours straight lol 💗🌸
-          </p>
-        </div>
-
-        <!-- ADD MORE ENTRIES HERE -->
+        <button id="saveEntry" class="post-btn">Post Entry</button>
       </div>
-      <!-- end notebook page -->
+
+      <!-- ENTRIES -->
+      <div id="diaryEntries"></div>
     </div>
-    <!-- end notebook -->
+
+    <script>
+      function loadEntries() {
+        const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+        const container = document.getElementById("diaryEntries");
+        container.innerHTML = "";
+
+        saved.forEach((entry, index) => {
+          container.innerHTML += `
+        <div class="entry-page">
+          <div class="entry-header">
+            <span class="date">📅 ${entry.date}</span>
+            <button class="delete-btn" data-index="${index}">delete</button>
+          </div>
+
+          <p><strong>mood:</strong> ${entry.mood}</p>
+          <p><strong>listening to:</strong> ${entry.music}</p>
+          <p class="entry-text">${entry.text}</p>
+        </div>`;
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const i = e.target.getAttribute("data-index");
+            const entries = JSON.parse(
+              localStorage.getItem("diaryEntries") || "[]"
+            );
+            entries.splice(i, 1);
+            localStorage.setItem("diaryEntries", JSON.stringify(entries));
+            loadEntries();
+          });
+        });
+      }
+
+      document.getElementById("saveEntry").addEventListener("click", () => {
+        const mood = document.getElementById("moodInput").value.trim();
+        const music = document.getElementById("musicInput").value.trim();
+        const text = document.getElementById("diaryInput").value.trim();
+
+        if (!text) return;
+
+        const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+
+        saved.unshift({
+          date: new Date().toLocaleDateString(),
+          mood: mood || "—",
+          music: music || "—",
+          text: text,
+        });
+
+        localStorage.setItem("diaryEntries", JSON.stringify(saved));
+
+        document.getElementById("moodInput").value = "";
+        document.getElementById("musicInput").value = "";
+        document.getElementById("diaryInput").value = "";
+
+        loadEntries();
+      });
+
+      loadEntries();
+    </script>
   </body>
 </html>
-
-<script>
-  function loadEntries() {
-    const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
-    const container = document.getElementById("diaryEntries");
-    container.innerHTML = "";
-
-    saved.forEach((entry, index) => {
-      container.innerHTML += `
-        <div class="diary-entry">
-          <p class="entry-date">📅 ${entry.date}</p>
-          <p>${entry.text}</p>
-          <button class="delete-btn" data-index="${index}">delete</button>
-        </div>`;
-    });
-
-    // Add delete button functionality
-    document.querySelectorAll(".delete-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const i = e.target.getAttribute("data-index");
-        const entries = JSON.parse(
-          localStorage.getItem("diaryEntries") || "[]"
-        );
-
-        entries.splice(i, 1); // remove selected entry
-        localStorage.setItem("diaryEntries", JSON.stringify(entries));
-
-        loadEntries(); // refresh list
-      });
-    });
-  }
-
-  document.getElementById("saveEntry").addEventListener("click", () => {
-    const text = document.getElementById("diaryInput").value.trim();
-    if (!text) return;
-
-    const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
-
-    saved.unshift({
-      date: new Date().toLocaleDateString(),
-      text: text,
-    });
-
-    localStorage.setItem("diaryEntries", JSON.stringify(saved));
-    document.getElementById("diaryInput").value = "";
-
-    loadEntries();
-  });
-
-  loadEntries();
-</script>
