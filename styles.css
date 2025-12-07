@@ -368,3 +368,30 @@ body {
     height: 80px;
   }
 }
+/* —————————————— FULL-WIDTH TOP BANNER —————————————— */
+.top-banner {
+  width: 100vw !important;
+  height: 100px !important; /* adjust size here */
+  margin: 0;
+  padding: 0;
+}
+
+/* Replace Glitter-Graphics banner source */
+.top-banner .blacktext12 {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  background-image: url("https://dl7.glitter-graphics.net/pub/379/379847wf0e6huhfa.gif") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+
+  /* FORCE image to stretch full width */
+  background-size: cover !important;
+
+  visibility: visible !important;
+  font-size: 0 !important;
+  border: none !important;
+  padding: 0;
+  margin: 0;
+}
