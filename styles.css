@@ -338,106 +338,143 @@ body {
     height: 80px;
   }
 }
-/* --- NOTEBOOK CONTAINER --- */
-.notebook {
-  width: 720px;
-  margin: 30px auto;
+
+/* GENERAL PAGE */
+body {
+  background: #ffeef7;
+  font-family: "Comic Sans MS", sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
-  position: relative;
+  justify-content: center;
 }
 
-/* --- HOLES + RINGS (left side) --- */
-.notebook-rings {
-  width: 60px;
-  background: repeating-linear-gradient(#eee, #eee 14px, #ddd 14px, #ddd 28px);
-  border-right: 3px double #d8b0c8;
-  box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.08);
-  position: relative;
-}
-
-.notebook-rings::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 50%;
-  width: 14px;
-  transform: translateX(-50%);
-  background: url("https://i.imgur.com/H6YMegO.png") repeat-y center / contain;
-  opacity: 0.9;
-}
-
-/* Notebook layout container */
+/* MAIN NOTEBOOK LAYOUT */
 .notebook {
-  width: 720px;
-  margin: 30px auto;
-  display: flex;
-  gap: 0;
-}
-
-/* Rings on the left */
-.notebook-rings {
-  width: 60px;
-  background: repeating-linear-gradient(#eee, #eee 14px, #ddd 14px, #ddd 28px);
-  border-right: 3px double #d8b0c8;
-  box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.08);
-}
-
-/* Notebook page */
-.notebook-page {
-  flex: 1;
+  width: 800px;
+  margin-top: 30px;
   background: white;
-  padding: 30px 40px;
-  border-left: 3px solid #ff9aca;
-  background-image: linear-gradient(white 80px, rgba(255, 255, 255, 0)),
-    repeating-linear-gradient(
-      #ffd7ec 0,
-      #ffd7ec 1px,
-      transparent 1px,
-      transparent 24px
-    );
-  background-size: 100% 24px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 3px solid #ffb7d8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  border-radius: 14px;
 
-  /* THE THREE MAGIC FIXES */
-  display: flex;
-  flex-direction: column; /* stack downward */
-  overflow-y: auto; /* scroll if many entries */
-  max-height: 80vh; /* keeps page from stretching forever */
-}
-
-/* Page title */
-.notebook-title {
-  font-family: "Comic Sans MS";
-  color: #ff58a8;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-/* Diary entry box */
-.diary-entry {
-  background: rgba(255, 245, 251, 0.7);
-  border-left: 4px solid #ff9ccd;
-  padding: 12px 18px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  max-width: 100%; /* stops it from going right side */
-  word-wrap: break-word; /* prevents long text from overflowing */
-}
-
-/* Mood + listening */
-.entry-meta {
-  font-size: 13px;
-  color: #c35588;
-  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 25px;
 }
 
-.entry-date {
+/* SPIRAL RING LOOK */
+.spiral {
+  height: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    #e39bc2 0px,
+    #e39bc2 5px,
+    transparent 5px,
+    transparent 20px
+  );
+  margin-bottom: 10px;
+}
+
+/* WRITE ENTRY BOX */
+.write-box {
+  background: #fff4fb;
+  border: 2px solid #ff9ac5;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.write-box h2 {
+  margin-top: 0;
+  color: #e34898;
+}
+
+.small-in {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 2px solid #ffb7dd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 2px solid #ffb7dd;
+  border-radius: 8px;
+  resize: none;
+}
+
+/* POST BUTTON */
+.post-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background: #ff7bb6;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: bold;
+}
+
+.post-btn:hover {
+  background: #ff95c9;
+}
+
+/* DIARY ENTRIES SECTION */
+#diaryEntries {
+  display: flex;
+  flex-direction: column; /* STACK DOWNWARD */
+  gap: 20px;
+  max-height: 500px; /* CONTROL SIZE */
+  overflow-y: auto; /* SCROLL IF MANY ENTRIES */
+  padding-right: 10px;
+}
+
+/* ENTRY PAGES */
+.entry-page {
+  background: white;
+  padding: 15px;
+  border-left: 4px solid #ff9ac5;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  word-wrap: break-word; /* FIX TEXT OVERFLOW */
+  max-width: 100%;
+}
+
+/* ENTRY HEADER */
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.date {
   font-size: 14px;
-  color: #d94b93;
-  margin-bottom: 5px;
+  color: #d6428c;
+  font-weight: bold;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: #ff6b8f;
+  border: none;
+  padding: 4px 8px;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #ff88a8;
+}
+
+/* ENTRY TEXT */
+.entry-text {
+  margin-top: 10px;
+  white-space: pre-wrap;
 }
