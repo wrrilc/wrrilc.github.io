@@ -703,3 +703,16 @@ textarea {
     max-height: 1200px;
   }
 }
+.return-home {
+  display: inline-block;
+  margin: 20px;
+  font-size: 16px;
+  color: #ff77b7;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.return-home:hover {
+  color: #ff4f9e;
+  text-decoration: underline;
+}
