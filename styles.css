@@ -368,31 +368,3 @@ body {
     height: 80px;
   }
 }
-/* FORCE FULL-WIDTH TOP BANNER */
-.top-banner {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* FORCE THE GLITTER BANNER TO FILL THE TOP BAR */
-.top-banner .blacktext12 {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 140px !important; /* Change this to adjust size */
-
-  background-image: url("https://dl4.glitter-graphics.net/pub/1309/1309664ug506dirwd.gif") !important;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  background-position: center !important;
-
-  visibility: visible !important;
-  font-size: 0 !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
