@@ -1,371 +1,31 @@
-/* ---------- CLEANED & FIXED STYLES ---------- */
+/* ============================================================
+   DIARY PAGE — ONLY APPLIES IF <body class="diary">
+============================================================ */
 
-/* basic reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html,
-body {
-  height: 100%;
-}
-body {
-  /* glitter background (HTTPS) */
-  background-image: url("https://dl6.glitter-graphics.net/pub/426/426396co86hhn7kj.jpg");
-  background-repeat: repeat;
-  background-attachment: fixed;
-  font-family: "Verdana", "Arial", sans-serif;
-  font-size: 13px;
-  color: #222;
-  overflow-x: hidden;
-  /* glitter cursor (HTTPS) */
-  cursor: url("https://media.tumblr.com/tumblr_m98z02EFLe1qid2nw.gif"), auto;
-}
-
-/* marquee */
-.retro-marquee {
-  background: linear-gradient(90deg, #fff0fb, #fff4f9);
-  padding: 6px 0;
-  font-weight: bold;
-  color: #ff66aa;
-  border-bottom: 3px double #ff99cc;
-}
-
-/* layout table */
-.layout {
-  width: 980px;
-  margin: 18px auto;
-  border: 4px double #ff99cc;
-  background: #fffefc;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-collapse: separate;
-}
-
-/* SIDEBARS */
-.sidebar {
-  width: 200px; /* slightly narrower */
-  padding: 10px;
-  vertical-align: top;
-  background: linear-gradient(180deg, #fff7fb, #fff0f5);
-  border-right: 3px double #ff99cc;
-}
-.sidebar.right {
-  border-left: 3px double #ff99cc;
-  border-right: none;
-}
-
-/* site title */
-.site-title {
-  font-family: "Comic Sans MS", Verdana;
-  color: #ff66aa;
-  text-align: center;
-  font-size: 20px;
-  margin: 6px 0;
-  text-shadow: 1px 1px 0 #fff;
-}
-
-/* avatar */
-.avatar {
-  display: block;
-  margin: 8px auto;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border: 3px ridge #ffbcd9;
-  background: #fff;
-}
-
-/* nav links */
-.nav-link {
-  display: block;
-  text-decoration: none;
-  color: #b3005c;
-  background: #ffd6ec;
-  padding: 6px;
-  margin: 6px 0;
-  border: 2px outset #ff9ccd;
-  text-align: center;
-  font-size: 12px;
-}
-.nav-link:hover {
-  border-style: inset;
-  background: #ffcfe6;
-}
-
-/* sidebar section */
-.sidebar-section {
-  margin: 12px 0;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px dotted #ff9ccd;
-}
-
-/* button grid */
-.button-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.tool-btn {
-  background: #ffd6ec;
-  border: 2px outset #ff9ccd;
-  padding: 6px;
-  cursor: pointer;
-  color: #b3005c;
-  font-weight: 700;
-  border-radius: 4px;
-}
-.tool-btn:hover {
-  border-style: inset;
-}
-
-/* PLAYER */
-.player {
-  margin-top: 10px;
-  width: 95%;
-  background: linear-gradient(180deg, #e083c8, #eecbe0);
-  border: 2px outset #ca2aad;
-  border-radius: 5px;
-  padding: 6px;
-  font-size: 11px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-}
-.player-controls {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.pbtn {
-  padding: 2px 4px;
-  font-size: 10px;
-  border-radius: 3px;
-  border: 1px solid #b4008d;
-  background: #ec74aa;
-  cursor: pointer;
-}
-.pbtn:hover {
-  background: #a91e82;
-}
-.p-info {
-  font-size: 11px;
-  color: #7f116c;
-  margin-left: 8px;
-}
-
-/* content area */
-.content {
-  padding: 14px;
-  background: linear-gradient(180deg, #ffffff, #fffafc);
-  position: relative;
-  min-height: 520px;
-  overflow: visible;
-}
-
-/* headings */
-.page-header {
-  font-family: "Comic Sans MS";
-  color: #ff66aa;
-  font-size: 20px;
-  margin: 0 0 6px;
-}
-.lead {
-  color: #5a2a4a;
-  margin: 8px 0 12px;
-}
-
-/* hr style */
-.cute-hr {
-  border: none;
-  height: 8px;
-  background: linear-gradient(90deg, #fff0fb, #fff1f9);
-  margin: 12px 0;
-}
-
-/* panels */
-.panel {
-  background: #fff7fb;
-  border: 2px dotted #ff9ccd;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-}
-
-/* thumb rows */
-.thumb-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-/* default thumb sizing (used in sticker panel and GIF lists) */
-.thumb {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  border: 2px solid #ffdfee;
-  cursor: pointer;
-  background: #fff0f8;
-  padding: 4px;
-  box-sizing: border-box;
-}
-
-/* sticker layer (absolute) */
-.sticker-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 50;
-}
-
-/* placed sticker (when JS appends images into sticker-layer) */
-.sticker {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  cursor: grab;
-  pointer-events: auto;
-  user-select: none;
-}
-
-/* small effects layers */
-.sparkles-layer,
-.falling-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 5;
-  overflow: hidden;
-}
-
-/* message / guestbook */
-.messages {
-  margin-top: 10px;
-  max-height: 220px;
-  overflow: auto;
-  padding-right: 8px;
-}
-.message {
-  background: #fff4f9;
-  border: 2px dashed #ffb0d6;
-  padding: 8px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-}
-
-/* right panel visuals */
-.right-panel {
-  position: static;
-  width: 100%;
-  margin-top: 10px;
-  background: #fff8fb;
-  border: 2px dotted #ffd9ef;
-  padding: 8px;
-}
-
-/* right sidebar stamps: these are banner-shaped, not square thumbs */
-#rightStampThumbs {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-}
-#rightStampThumbs .stamp-thumb {
-  width: auto;
-  height: auto;
-  max-width: 150px;
-  background: transparent;
-  border: 1px solid #ffd6ef;
-  padding: 4px;
-}
-
-/* right sidebar gifs use small square thumbs */
-#rightGifThumbs .thumb {
-  width: 70px;
-  height: 70px;
-}
-
-/* sticker panel and right panel preserve square thumbnails */
-#stickerThumbs .thumb,
-#rightThumbs .thumb {
-  width: 72px;
-  height: 72px;
-}
-
-/* ensure .blacktext12 inside sidebar (if accidentally present) is hidden */
-.sidebar .blacktext12 {
-  display: none !important;
-}
-
-/* XP borders toggle helper */
-.xp-borders * {
-  border: 2px groove #c0c0ff !important;
-}
-
-/* footer */
-.foot {
-  text-align: center;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 12px;
-  color: #77006f;
-}
-
-/* responsive */
-@media (max-width: 1000px) {
-  .layout {
-    width: 95%;
-    display: block;
-  }
-  .sidebar {
-    width: 100%;
-    margin-bottom: 10px;
-    border-right: none;
-    border-left: none;
-  }
-  .sidebar.right {
-    border: none;
-  }
-  .top-banner .blacktext12 {
-    width: 90%;
-    height: 80px;
-  }
-}
-
-/* DIARY PAGE ONLY */
-.diary-page {
+body.diary {
   background: #ffeef7 !important;
   font-family: "Comic Sans MS", sans-serif;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
-/* MAIN NOTEBOOK LAYOUT */
-.notebook {
+/* notebook */
+body.diary .notebook {
   width: 800px;
   margin-top: 30px;
   background: white;
   border: 3px solid #ffb7d8;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   padding: 20px;
   border-radius: 14px;
-
   display: flex;
   flex-direction: column;
   gap: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* SPIRAL RING LOOK */
-.spiral {
+/* spiral */
+body.diary .spiral {
   height: 20px;
   background: repeating-linear-gradient(
     to right,
@@ -374,121 +34,69 @@ body {
     transparent 5px,
     transparent 20px
   );
-  margin-bottom: 10px;
 }
 
-/* WRITE ENTRY BOX */
-.write-box {
+/* input box */
+body.diary .write-box {
   background: #fff4fb;
   border: 2px solid #ff9ac5;
   padding: 15px;
   border-radius: 10px;
 }
 
-.write-box h2 {
-  margin-top: 0;
-  color: #e34898;
-}
-
-.small-in {
+body.diary .small-in,
+body.diary textarea {
   width: 100%;
   margin-bottom: 10px;
   padding: 8px;
   border: 2px solid #ffb7dd;
   border-radius: 8px;
-  background: #fff;
 }
 
-textarea {
-  width: 100%;
+body.diary textarea {
   height: 100px;
-  padding: 10px;
-  border: 2px solid #ffb7dd;
-  border-radius: 8px;
   resize: none;
 }
 
-/* POST BUTTON */
-.post-btn {
-  margin-top: 10px;
-  padding: 8px 16px;
-  border: none;
+/* post button */
+body.diary .post-btn {
   background: #ff7bb6;
   color: white;
+  padding: 8px 16px;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
   font-weight: bold;
 }
-
-.post-btn:hover {
+body.diary .post-btn:hover {
   background: #ff95c9;
 }
 
-/* DIARY ENTRIES SECTION */
-#diaryEntries {
+/* entries layout */
+body.diary #diaryEntries {
   display: flex;
-  flex-direction: column; /* STACK DOWNWARD */
+  flex-direction: column;
   gap: 20px;
-  max-height: 500px; /* CONTROL SIZE */
-  overflow-y: auto; /* SCROLL IF MANY ENTRIES */
+  max-height: 500px;
+  overflow-y: auto;
   padding-right: 10px;
 }
 
-/* ENTRY PAGES */
-.entry-page {
+/* entry collapsed */
+body.diary .entry-page {
   background: white;
   padding: 15px;
   border-left: 4px solid #ff9ac5;
   border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  word-wrap: break-word; /* FIX TEXT OVERFLOW */
-  max-width: 100%;
-}
-
-/* ENTRY HEADER */
-.entry-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.date {
-  font-size: 14px;
-  color: #d6428c;
-  font-weight: bold;
-}
-
-/* DELETE BUTTON */
-.delete-btn {
-  background: #ff6b8f;
-  border: none;
-  padding: 4px 8px;
-  color: white;
-  font-size: 12px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  background: #ff88a8;
-}
-
-/* ENTRY TEXT */
-.entry-text {
-  margin-top: 10px;
-  white-space: pre-wrap;
-}
-/* COLLAPSIBLE ENTRIES */
-.entry-page {
-  max-height: 90px; /* collapsed height */
+  max-height: 100px;
   overflow: hidden;
   position: relative;
-  transition: max-height 0.5s ease;
   cursor: pointer;
+  transition: max-height 0.4s ease;
 }
 
-/* shading at bottom to show "hidden" text */
-.entry-page::after {
+/* fade overlay */
+body.diary .entry-page::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -497,223 +105,37 @@ textarea {
   height: 40px;
   background: linear-gradient(to bottom, transparent, white);
   pointer-events: none;
-  transition: opacity 0.3s;
 }
 
-/* expanded state */
-.entry-page.open {
-  max-height: 700px; /* expanded height */
+/* expanded */
+body.diary .entry-page.open {
+  max-height: 1500px;
 }
-
-/* remove fade when expanded */
-.entry-page.open::after {
-  opacity: 0;
-}
-/* ---------- COLLAPSIBLE ENTRY + ANIMATIONS ---------- */
-
-/* collapsed preview state */
-.entry-page {
-  max-height: 96px; /* collapsed height (preview) */
-  overflow: hidden;
-  position: relative;
-  transition: max-height 420ms cubic-bezier(0.2, 0.9, 0.25, 1), box-shadow 250ms;
-  cursor: pointer;
-  padding: 14px;
-  border-left: 6px solid #ffd1e8;
-  background: linear-gradient(180deg, #fff, #fffaf6);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* preview gradient overlay to hint there is more */
-.entry-page::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
-  pointer-events: none;
-  transition: opacity 200ms;
-}
-
-/* expanded state */
-.entry-page.open {
-  max-height: 1500px; /* large enough for long text — adjust if needed */
-  box-shadow: 0 8px 28px rgba(255, 140, 190, 0.12);
-}
-
-/* remove bottom fade when open */
-.entry-page.open::after {
+body.diary .entry-page.open::after {
   opacity: 0;
 }
 
-/* header (date + arrow + delete) layout */
-.entry-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-/* left portion: date and meta */
-.entry-meta-compact {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-  font-size: 13px;
-  color: #c84a8f;
-}
-
-/* arrow indicator — right side of header */
-.entry-arrow {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  transition: transform 250ms;
-  transform-origin: center;
-  margin-left: 10px;
-  flex-shrink: 0;
-  background-image: radial-gradient(circle at 30% 30%, #fff8, transparent 20%),
-    linear-gradient(135deg, #ff89b5, #ffb98f);
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) inset;
-}
-
-/* rotated when open */
-.entry-page.open .entry-arrow {
-  transform: rotate(180deg);
-}
-
-/* delete button (prevent triggering open) */
-.delete-btn {
+body.diary .delete-btn {
   background: #ff6b8f;
-  color: #fff;
-  border: none;
+  color: white;
   padding: 4px 8px;
-  border-radius: 6px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;
 }
-.delete-btn:hover {
-  background: #ff4f77;
-}
-
-/* sparkles element — shows when open */
-.entry-sparkles {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(-4px) scale(0.9);
-  transition: opacity 300ms, transform 300ms;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ffd1ea' d='M12 2l1.9 4.1L18 8l-4.1 1.9L12 14l-1.9-4.1L6 8l4.1-1.9z'/></svg>");
-  background-size: contain;
+body.diary .delete-btn:hover {
+  background: #ff88a8;
 }
 
-/* show sparkles when open, with a tiny pop */
-.entry-page.open .entry-sparkles {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: sparklePop 700ms ease;
-}
-
-/* subtle sparkle animation */
-@keyframes sparklePop {
-  0% {
-    transform: scale(0.8) translateY(-6px);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.08) translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* entry text */
-.entry-text {
-  margin-top: 10px;
-  white-space: pre-wrap;
-  line-height: 1.6;
-  color: #57354e;
-}
-
-/* MOOD COLORS — modify left border & slight background tint per mood */
-.entry-page.mood-dreamy {
-  border-left-color: #ff9ac5;
-  background: linear-gradient(180deg, #fff8fb, #fff6f8);
-}
-.entry-page.mood-happy {
-  border-left-color: #ffd86b;
-  background: linear-gradient(180deg, #fffdf4, #fffaf0);
-}
-.entry-page.mood-sad {
-  border-left-color: #9fb8ff;
-  background: linear-gradient(180deg, #fbfdff, #f6faff);
-}
-.entry-page.mood-chill {
-  border-left-color: #b8ffda;
-  background: linear-gradient(180deg, #fbfff9, #f6fff5);
-}
-.entry-page.mood-default {
-  border-left-color: #ffd1e8;
-}
-
-/* small meta labels inside entry (mood / music) */
-.entry-smallmeta {
-  font-size: 13px;
-  color: #a24b87;
-  margin-top: 6px;
-}
-
-/* OPTIONAL: arrow icon using pseudo-element (if you want a chevron) */
-/* Remove if you like current square arrow. Example chevron: */
-/*
-*/
-
-.entry-arrow::before {
-  content: "▾";
-  display: block;
-  font-size: 14px;
-  transform-origin: center;
-}
-
-/* a11y: make delete button not trigger entry toggle when using keyboard */
-.delete-btn:focus {
-  outline: 2px solid rgba(255, 100, 150, 0.4);
-}
-
-/* small responsive adjustments */
-@media (max-width: 820px) {
-  .entry-page {
-    max-height: 88px;
-  }
-  .entry-page.open {
-    max-height: 1200px;
-  }
-}
-.return-home {
+/* return home */
+body.diary .return-home {
   display: inline-block;
-  margin: 20px;
+  margin-top: 10px;
   font-size: 16px;
   color: #ff77b7;
   font-weight: bold;
-  text-decoration: none;
 }
-
-.return-home:hover {
+body.diary .return-home:hover {
   color: #ff4f9e;
   text-decoration: underline;
 }
