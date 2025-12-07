@@ -17,6 +17,16 @@
       <div class="notebook-page">
         <h2 class="notebook-title">My Diary ♡</h2>
 
+        <div class="write-entry">
+          <textarea
+            id="diaryInput"
+            placeholder="Write your diary entry here…"
+          ></textarea>
+          <button id="saveEntry">Post Entry</button>
+        </div>
+
+        <div id="diaryEntries"></div>
+
         <!-- ENTRY 1 -->
         <div class="diary-entry">
           <p class="entry-date">📅 February 12, 2025</p>
@@ -43,3 +53,38 @@
     <!-- end notebook -->
   </body>
 </html>
+
+<script>
+  function loadEntries() {
+    const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+    const container = document.getElementById("diaryEntries");
+    container.innerHTML = "";
+
+    saved.forEach((entry) => {
+      container.innerHTML += `
+        <div class="diary-entry">
+          <p class="entry-date">📅 ${entry.date}</p>
+          <p>${entry.text}</p>
+        </div>`;
+    });
+  }
+
+  document.getElementById("saveEntry").addEventListener("click", () => {
+    const text = document.getElementById("diaryInput").value.trim();
+    if (!text) return;
+
+    const saved = JSON.parse(localStorage.getItem("diaryEntries") || "[]");
+
+    saved.unshift({
+      date: new Date().toLocaleDateString(),
+      text: text,
+    });
+
+    localStorage.setItem("diaryEntries", JSON.stringify(saved));
+    document.getElementById("diaryInput").value = "";
+
+    loadEntries();
+  });
+
+  loadEntries();
+</script>
