@@ -433,3 +433,6 @@ body {
   height: 120px; /* bigger */
   background-size: contain;
 }
+.left-column .blacktext12 {
+  display: none !important;
+}
