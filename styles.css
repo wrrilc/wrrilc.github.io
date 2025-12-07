@@ -367,117 +367,77 @@ body {
   opacity: 0.9;
 }
 
-/* --- NOTEBOOK ---*/
-body {
-  background: #ffe7f7;
-  font-family: "Trebuchet MS", sans-serif;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
-}
-
+/* Notebook layout container */
 .notebook {
-  width: 700px;
-  background: #fff8fc;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255, 150, 200, 0.4);
-  position: relative;
-}
-
-/* SPIRAL */
-.spiral {
-  height: 50px;
-  background: repeating-linear-gradient(
-    to right,
-    #ffb6d5 0 20px,
-    #ffe792 20px 40px
-  );
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-/* WRITE BOX */
-.write-box {
-  background: #fff6fc;
-  padding: 20px;
-  border-left: 6px solid #ff9fd7;
-  border-radius: 12px;
-  margin-bottom: 30px;
-}
-
-.write-box h2 {
-  margin-top: 0;
-  color: #f082b0;
-}
-
-.small-in {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 2px solid #ffbadf;
-  border-radius: 6px;
-  background: #fff;
-}
-
-#diaryInput {
-  width: 100%;
-  height: 120px;
-  padding: 10px;
-  border: 2px solid #ffbadf;
-  border-radius: 6px;
-  background: #fff;
-  resize: vertical;
-}
-
-/* POST BUTTON */
-.post-btn {
-  padding: 10px 20px;
-  background: #ff97cd;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.post-btn:hover {
-  background: #ff7fba;
-}
-
-/* ENTRY PAGE */
-.entry-page {
-  background: #ffffff;
-  border-left: 6px solid #ffee8f;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 10px rgba(255, 208, 140, 0.3);
-}
-
-.entry-header {
+  width: 720px;
+  margin: 30px auto;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  gap: 0;
 }
 
-.entry-text {
-  margin-top: 10px;
-  white-space: pre-wrap;
+/* Rings on the left */
+.notebook-rings {
+  width: 60px;
+  background: repeating-linear-gradient(#eee, #eee 14px, #ddd 14px, #ddd 28px);
+  border-right: 3px double #d8b0c8;
+  box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.08);
 }
 
-/* DELETE BUTTON */
-.delete-btn {
-  background: #ff6f9c;
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
+/* Notebook page */
+.notebook-page {
+  flex: 1;
+  background: white;
+  padding: 30px 40px;
+  border-left: 3px solid #ff9aca;
+  background-image: linear-gradient(white 80px, rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(
+      #ffd7ec 0,
+      #ffd7ec 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  background-size: 100% 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+  /* THE THREE MAGIC FIXES */
+  display: flex;
+  flex-direction: column; /* stack downward */
+  overflow-y: auto; /* scroll if many entries */
+  max-height: 80vh; /* keeps page from stretching forever */
 }
 
-.delete-btn:hover {
-  background: #ff497e;
+/* Page title */
+.notebook-title {
+  font-family: "Comic Sans MS";
+  color: #ff58a8;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Diary entry box */
+.diary-entry {
+  background: rgba(255, 245, 251, 0.7);
+  border-left: 4px solid #ff9ccd;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  max-width: 100%; /* stops it from going right side */
+  word-wrap: break-word; /* prevents long text from overflowing */
+}
+
+/* Mood + listening */
+.entry-meta {
+  font-size: 13px;
+  color: #c35588;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry-date {
+  font-weight: bold;
+  font-size: 14px;
+  color: #d94b93;
+  margin-bottom: 5px;
 }
