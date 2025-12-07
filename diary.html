@@ -60,12 +60,28 @@
     const container = document.getElementById("diaryEntries");
     container.innerHTML = "";
 
-    saved.forEach((entry) => {
+    saved.forEach((entry, index) => {
       container.innerHTML += `
         <div class="diary-entry">
           <p class="entry-date">📅 ${entry.date}</p>
           <p>${entry.text}</p>
+          <button class="delete-btn" data-index="${index}">delete</button>
         </div>`;
+    });
+
+    // Add delete button functionality
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const i = e.target.getAttribute("data-index");
+        const entries = JSON.parse(
+          localStorage.getItem("diaryEntries") || "[]"
+        );
+
+        entries.splice(i, 1); // remove selected entry
+        localStorage.setItem("diaryEntries", JSON.stringify(entries));
+
+        loadEntries(); // refresh list
+      });
     });
   }
 
